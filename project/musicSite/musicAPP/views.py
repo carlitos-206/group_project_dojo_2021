@@ -48,7 +48,6 @@ def farewell(request):
 def dashboard(request):
     if 'user_id' in request.session:
         this_user=Users.objects.filter(id=request.session['user_id'])
-        newest_party=Party.objects.filter(host=this_user[0])
         context = {
         'user': this_user[0],
         # need second db to contine @gustavo
