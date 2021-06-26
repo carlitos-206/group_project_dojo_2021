@@ -9,14 +9,14 @@
 <body>
     <div class="wrapper">
         <h1>Create a group</h1>
-        <!-- {% if messages %}
+        {% if messages %}
         <ul>
             {% for message in messages %}
             <li>{{ message }}</li>
             {% endfor %}
         </ul>
-        {% endif %} -->
-        <form action="/" method="POST">
+        {% endif %}
+        <form action="/create" method="POST">
             {% csrf_token %}
             <div class="form-group">
                 <label for="name">Name</label>

@@ -29,6 +29,7 @@ path('allGroups', views.allGroups),
 #------END-----------------------
 
 #-----URLS GUSTAVO--------------
-
+path('new', views.new),
+path('create', views.create),
 #------END---------------
 ]

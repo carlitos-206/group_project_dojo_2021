@@ -3,6 +3,7 @@ from functools import total_ordering
 from sre_constants import error
 from django.db import models
 import re
+from django.db.models.base import Model
 from django.db.models.deletion import CASCADE
 from django.db.models.fields import TimeField
 import bcrypt
@@ -68,8 +69,31 @@ class Users(models.Model):
 
 #---------------------------END-----------------------------------------
 
-#---------------------The models below: Groups and GroupManager--------------------------------
+#---------------------The models below: Group and GroupManager--------------------------------
+class GroupManager(models.Manager):
+    def basic_validator(request, postData):
+        errors= {}
+        existing_group = Group.objects.filter(name=postData['name'])
+        if len(postData['name']) < 3:
+            errors['name'] = "Group name must contain at least 3 characters"
+        if len(postData['genre']) < 3:
+            errors['genre'] = "Genre must contain at least 3 characters"
+        if len(postData['desc']) < 10:
+            errors['desc'] = "Description must contain least 10 characters"
+        if len(postData['desc']) == 0:
+            errors["desc"] = "Description Field Required"
+        if existing_group:
+            errors['existing_group'] = "Group already exist"
+        return errors
 
+class Group(models.Model):
+    name = models.CharField(max_length=255)
+    genre = models.CharField(max_length=255)
+    desc = models.TextField()
+    owner = models.ForeignKey(Users, related_name = 'group_leader', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = GroupManager()
 
 
 #---------------------------END-----------------------------------------
