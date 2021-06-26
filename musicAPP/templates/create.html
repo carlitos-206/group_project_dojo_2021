@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Space</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Create a group</h1>
+        <!-- {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} -->
+        <form action="/" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name">
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <input type="text" name="genre">
+            </div>
+            <div class="form-group">
+                <label for="desc">Description</label>
+                <textarea name="desc" cols="25" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn-primary" value="Create">
+            </div>
+        </form>
+        <a href="/main">Back</a>
+
+    </div>
+</body>
+</html>
