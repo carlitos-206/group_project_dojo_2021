@@ -1,0 +1,14 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    background-color: whitesmoke;
+}
+.text-center {
+   position: absolute;
+   left: 250px;
+}
+#main_table{
+    position: absolute;
+    top: 200px;
+    left:300px;
+} 
