@@ -17,6 +17,9 @@ urlpatterns=[
 #--------END------------------
 
 #--------URLS JAIMEI-----------
+#path('myGroups/<str:name>', views.myGroups),
+path('myGroups', views.myGroups),
+path('allGroups', views.allGroups),
 
 #--------END-----------
 

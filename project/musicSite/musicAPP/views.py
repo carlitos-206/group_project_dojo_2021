@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from .models import Users
 from django.contrib import messages
 import bcrypt
+from .models import *
 
 #Everyone make sure to write in the given space this will make it easier to debug
 
@@ -61,6 +62,37 @@ def dashboard(request):
 
 
 #------------JAIME VIEWS----------------------
+#def myGroups(request, name):
+def myGroups(request):
+    if 'user_id' in request.session:
+        this_user=Users.objects.filter(id=request.session['user_id'])
+        context = {
+        'user': this_user[0],
+        # need second db to contine @gustavo
+    }
+        return render(request, 'myGroups.html', context)
+    else:
+        return redirect('/')
+
+# if not 'user_id' in request.session:
+#   return redirect("/")
+#       context = {
+#            "x": myGroups.objects.all(),
+#            "user": User.objects.get(id=request.session['user_id']),
+#    }
+#    return render(request, "myGroups.html", context)
+
+
+def allGroups(request):
+    if 'user_id' in request.session:
+        this_user=Users.objects.filter(id=request.session['user_id'])
+        context = {
+        'user': this_user[0],
+        # need second db to contine @gustavo
+    }
+        return render(request, 'allGroups.html', context)
+    else:
+        return redirect('/')
 
 #-------------END------------------------------
 
