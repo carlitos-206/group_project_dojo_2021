@@ -33,7 +33,7 @@
                     {% for x in x %}  <!---x comes from views function -->
     
                             <tr>
-                                <th>{{x.owner}}</th>
+                                <th>{{user.username}}</th>
                                 <th>{{x.name}}</th>
                                 <th>{{x.desc}}</th>
                            <!--     <th>{{x.count}}</th> -->
@@ -42,6 +42,7 @@
                                 <th>{{x.updated_at}}</th>
                                 <th>
                                     <a href="/myGroups/{{x.id}}/delete">Remove</a>
+                                    <a href="/myGroups/{{x.id}}/edit">Edit</a>
                                 </th>
                             </tr>
                        

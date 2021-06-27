@@ -63,16 +63,7 @@ def dashboard(request):
 
 #------------JAIME VIEWS----------------------
 #def myGroups(request, name):
-def myGroups(request):
-    if 'user_id' in request.session:
-        this_user=Users.objects.filter(id=request.session['user_id'])
-        context = {
-        'user': this_user[0],
-        # need second db to contine @gustavo
-    }
-        return render(request, 'myGroups.html', context)
-    else:
-        return redirect('/')
+
 
 # if not 'user_id' in request.session:
 #   return redirect("/")
@@ -96,15 +87,19 @@ def myGroups(request):
 
 
 
+
 def myGroups(request):
     if not 'user_id' in request.session:
         return redirect("/")
-   # allGroups = Group.objects.exclude(user)
+
+    user = Users.objects.get(id=request.session['user_id'])
+    x = Group.objects.filter(owner=user.id)
+
     context = {
-    #        "allGroups": allGroups,
-            "x": Group.objects.all(),
-            "user": Users.objects.get(id=request.session['user_id']),
+            "x": x,
+            "user": user,
     }
+    
     return render(request, "myGroups.html", context)
 
 def myGroups_delete(request, id):  #applies when hitting edit button on the main page
@@ -118,10 +113,13 @@ def allGroups(request):
     if not 'user_id' in request.session:
         return redirect("/")
    # allGroups = Group.objects.exclude(user)
+    user = Users.objects.get(id=request.session['user_id'])
+    allGroups = Group.objects.exclude(owner=user.id)
+
     context = {
     #        "allGroups": allGroups,
-            "allGroups": Group.objects.all(),
-            "user": Users.objects.get(id=request.session['user_id']),
+            "allGroups": allGroups,
+            "user": user,
     }
     return render(request, "allGroups.html", context)
 

@@ -32,7 +32,7 @@
                     </tr>
                     {% for allGroups in allGroups %}  <!---x comes from views function -->
                     <tr>
-                        <th>{{allGroups.owner}}</th>
+                        <th>{{allGroups.owner.username}}</th>
                         <th>{{allGroups.name}}</th>
                         <th>{{allGroups.genre}}</th>
                         <th>{{allGroups.desc}}</th>
@@ -42,9 +42,6 @@
                             <a href="/allGroups/{{allGroups.id}}/delete">Remove</a>
                         </th>
                     </tr>
-            <!--       {% if allGroups.user.id == request.session.user_id %} -->
-                   
-                      <!--  {% endif %} -->
                     {% endfor %}
             </table>
         </div>

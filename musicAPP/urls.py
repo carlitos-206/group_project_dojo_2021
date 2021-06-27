@@ -22,6 +22,7 @@ path('myGroups', views.myGroups),
 path('allGroups', views.allGroups),
 path('allGroups/<int:id>/delete', views.allGroups_delete),
 path('myGroups/<int:id>/delete', views.myGroups_delete),
+######path('/myGroups/{{x.id}}/delete', views.myGroups_edit) - update/uncomment after Edit Page is completed by Connor
 
 #--------END-----------
 
