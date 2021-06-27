@@ -126,4 +126,10 @@ def create(request):
             owner = Users.objects.get(id=request.session['user_id'])
         )
         return redirect('/dashboard')
+
+def users_groups(request, id):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    current_user = Users.objects.get(id=request.session['user_id'])
+    return render(request, 'other_user_groups.html',)
 #---------------END--------------------------
