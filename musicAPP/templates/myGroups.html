@@ -10,37 +10,41 @@
     <body>
         <div class="logout">
             <a href="logout">Logout</a>
+            <a href="/dashboard">Back</a>
         </div>
         <div>
             <h5>Hello {{user.username}} ! </h5><br>
             <h2>Welcome to My Groups Page</h2>
         </div>
         <div>
+        
             <table style="width:100">
                 <h3>All My Groups: <h3>
                     <tr>
+                        <th>Group Host</th>
                         <th>Group Name</th>
                         <th>Group Description</th>
-                        <th>Group Member Count</th>
+                    <!--    <th>Group Member Count</th>  -->
                         <th>Group Rules</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th>Delete</th>
                     </tr>
                     {% for x in x %}  <!---x comes from views function -->
-                        {% if x.user.id == request.session.user_id %}
+    
                             <tr>
+                                <th>{{x.owner}}</th>
                                 <th>{{x.name}}</th>
                                 <th>{{x.description}}</th>
-                                <th>{{x.count}}</th>
+                           <!--     <th>{{x.count}}</th> -->
                                 <th>{{x.rules}}</th>
                                 <th>{{x.created_at}}</th>
                                 <th>{{x.updated_at}}</th>
                                 <th>
-                                    <a href="/myGroups/{{x.name}}/delete">Remove</a>
+                                    <a href="/myGroups/{{x.id}}/delete">Remove</a>
                                 </th>
                             </tr>
-                        {% endif %}
+                       
                     {% endfor %}
             </table>
         </div>

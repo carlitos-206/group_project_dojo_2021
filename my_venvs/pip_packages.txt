@@ -1,0 +1,378 @@
+Pip packages
+1.  WebDev
+------------------------------------------------------------------------------------------------------PIP PACKAGES FOR WEBDEV -----------------------------------------------------------------------------------------------------
+pip version 21.1.1
+
+django==2.2
+    frame work for web dev 
+        - pytz == 2021.1
+            pytz brings the Olson tz database into Python. This library allows accurate 
+            and cross platform timezone calculations using Python 2.4 or higher. 
+            It also solves the issue of ambiguous times at the end of daylight saving time,
+            which you can read more about in the Python Library Reference (datetime.tzinfo).
+        
+        -sqlparse ==0.4.1
+            sqlparse is a non-validating SQL parser for Python. 
+            It provides support for parsing, splitting and formatting SQL statements.
+            The module is compatible with Python 3.5+ and released under the terms of the New BSD license.
+            Visit the project page at https://github.com/andialbrecht/sqlparse for further information about this project.
+
+            Quick Start
+            ------ScriptStart---------------------------------------
+            >>> import sqlparse
+
+            >>> # Split a string containing two SQL statements:
+            >>> raw = 'select * from foo; select * from bar;'
+            >>> statements = sqlparse.split(raw)
+            >>> statements
+            ['select * from foo;', 'select * from bar;']
+
+            >>> # Format the first statement and print it out:
+            >>> first = statements[0]
+            >>> print(sqlparse.format(first, reindent=True, keyword_case='upper'))
+            SELECT *
+            FROM foo;
+
+            >>> # Parsing a SQL statement:
+            >>> parsed = sqlparse.parse('select * from foo')[0]
+            >>> parsed.tokens
+            [<DML 'select' at 0x7f22c5e15368>, <Whitespace ' ' at 0x7f22c5e153b0>, <Wildcard '*' … ]
+            >>>
+
+
+bcrypt==3.2 
+    Good password hashing for your software and your servers
+
+backcall==0.2.0
+    Specifications for callback functions passed in to an API
+    If your code lets other people supply callback functions, 
+    it’s important to specify the function signature you expect, 
+    and check that functions support that. Adding extra parameters 
+    later would break other peoples code unless you’re careful.
+    backcall provides a way of specifying the callback signature 
+    using a prototype function:
+
+    from backcall import callback_prototype
+    -----------ScriptStart----------------
+    @callback_prototype
+    def handle_ping(sender, delay=None):
+        # Specify positional parameters without a default, and keyword
+        # parameters with a default.
+        pass
+
+    def register_ping_handler(callback):
+        # This checks and adapts the function passed in:
+        callback = handle_ping.adapt(callback)
+        ping_callbacks.append(callback)
+    --------------ScriptEnd-----------------
+    If the callback takes fewer parameters than your prototype, 
+    backcall will wrap it in a function that discards the extra arguments. 
+    If the callback expects more arguments, a TypeError is thrown when it is registered.
+
+
+    The tests are run with pytest. In the root directory, execute:
+
+    CLI:
+    $ py.test
+
+pycparser==2.20
+    pycparser is a complete parser of the C language, 
+    written in pure Python using the PLY parsing library. 
+    It parses C code into an AST and can serve as a front-end for C compilers or analysis tools.
+
+cffi==1.14.5
+    Foreign Function Interface for Python calling C code.
+    # Look up docs for more info
+
+six==1.16.0
+    Six is a Python 2 and 3 compatibility library. It provides utility functions for 
+    smoothing over the differences between the Python versions with the goal of 
+    writing Python code that is compatible on both Python versions. 
+    
+    #See the documentation for more information on what is provided.
+    
+    Six supports Python 2.7 and 3.3+. It is contained in only one Python file, 
+    so it can be easily copied into your project.
+
+colorama==.0.4.1
+    Gives your terminal a color decoration to easily distiguish different objects, tables, etc.
+    # view docs to actually have it do it 
+
+decorator==5.0.9
+    #this is meant for an IDE not needed at all, VSCode does it already
+
+    The goal of the decorator module is to make it easy to define signature-preserving function 
+    decorators and decorator factories. It also includes an implementation of multiple dispatch 
+    and other niceties (please check the docs). It is released under a two-clauses BSD license, 
+    i.e. basically you can do whatever you want with it but I am not responsible.
+
+ipython==7.16.1
+    Gives the python shell color
+    
+    ipython.genutils
+        tool kit for ipython
+jedi==0.18.0
+    #Not Needed
+    Jedi is a static analysis tool for Python that is typically used in IDEs/editors plugins. 
+    Jedi has a focus on autocompletion and goto functionality. 
+    Other features include refactoring, code search and finding references
+
+parso==0.8.2
+    Parso is a Python parser that supports error recovery and round-trip parsing for different Python versions (in multiple Python versions). 
+    Parso is also able to list multiple syntax errors in your python file.
+    Parso has been battle-tested by jedi. It was pulled out of jedi to be useful for other projects as well.
+    Parso consists of a small API to parse Python and analyse the syntax tree.
+
+    A simple example:
+
+    >>> import parso
+    >>> module = parso.parse('hello + 1', version="3.9")
+    >>> expr = module.children[0]
+    >>> expr
+    PythonNode(arith_expr, [<Name: hello@1,0>, <Operator: +>, <Number: 1>])
+    >>> print(expr.get_code())
+    hello + 1
+    >>> name = expr.children[0]
+    >>> name
+    <Name: hello@1,0>
+    >>> name.end_pos
+    (1, 5)
+    >>> expr.end_pos
+    (1, 9)
+    To list multiple issues:
+
+    >>> grammar = parso.load_grammar()
+    >>> module = grammar.parse('foo +\nbar\ncontinue')
+    >>> error1, error2 = grammar.iter_errors(module)
+    >>> error1.message
+    'SyntaxError: invalid syntax'
+    >>> error2.message
+    "SyntaxError: 'continue' not properly in loop"
+
+pickleshare==0.7.5
+    PickleShare - a small ‘shelve’ like datastore with concurrency support
+    Like shelve, a PickleShareDB object acts like a normal dictionary. 
+    Unlike shelve, many processes can access the database simultaneously. 
+    Changing a value in database is immediately visible to other processes accessing the same database.
+
+    Concurrency is possible because the values are stored in separate files. Hence the “database” is a directory where all files are governed by PickleShare.
+
+    Example usage:
+
+    from pickleshare import *
+    db = PickleShareDB('~/testpickleshare')
+    db.clear()
+    print("Should be empty:",db.items())
+    db['hello'] = 15
+    db['aku ankka'] = [1,2,313]
+    db['paths/are/ok/key'] = [1,(5,46)]
+    print(db.keys())
+    
+    This module is certainly not ZODB, but can be used for low-load (non-mission-critical) 
+    situations where tiny code size trumps the advanced features of a “real” object database.
+
+prompt-toolkit==3.0.18
+    prompts you like it would on a ide but rather in the VIM 
+
+traitlets==4.3.3
+    Traitlets is a pure Python library enabling:
+    the enforcement of strong typing for attributes of Python objects (typed attributes are called "traits");
+    dynamically calculated default values;
+    automatic validation and coercion of trait attributes when attempting a change;
+    registering for receiving notifications when trait values change;
+    reading configuring values from files or from command line arguments - 
+    a distinct layer on top of traitlets, so you may use traitlets without the configuration machinery.
+    Its implementation relies on the descriptor pattern, and it is a lightweight pure-python alternative of the traits library.
+
+    Traitlets powers the configuration system of IPython and Jupyter and the declarative API of IPython interactive widgets.
+
+I   nstallation
+    For a local installation, make sure you have pip installed and run:
+
+    pip install traitlets
+    For a development installation, clone this repository, change into the traitlets root directory, and run pip:
+
+    git clone https://github.com/ipython/traitlets.git
+    cd traitlets
+    pip install -e .
+    Running the tests
+    pip install "traitlets[test]"
+    py.test traitlets
+    
+    Usage
+    Any class with trait attributes must inherit from HasTraits. 
+    For the list of available trait types and their properties, see the Trait Types section of the documentation.
+
+    Dynamic default values
+    To calculate a default value dynamically, decorate a method of your class with @default({traitname}). 
+    This method will be called on the instance, and should return the default value. 
+    In this example, the _username_default method is decorated with @default('username'):
+
+    --------------------------------ScriptStart---------------------------------------------------------------
+    import getpass
+    from traitlets import HasTraits, Unicode, default
+
+    class Identity(HasTraits):
+        username = Unicode()
+
+        @default('username')
+        def _username_default(self):
+            return getpass.getuser()
+    -----------------------------------ScriptEnd---------------------------------------------------------------
+
+    Callbacks when a trait attribute changes
+    When a trait changes, an application can follow this trait change with additional actions.
+
+    To do something when a trait attribute is changed, decorate a method with traitlets.observe(). 
+    The method will be called with a single argument, a dictionary which contains an owner, 
+    new value, old value, name of the changed trait, and the event type.
+
+    In this example, the _num_changed method is decorated with @observe(`num`):
+
+    -----------------------------------------ScriptStart---------------------------------------------------------
+    from traitlets import HasTraits, Integer, observe
+
+    class TraitletsExample(HasTraits):
+        num = Integer(5, help="a number").tag(config=True)
+
+        @observe('num')
+        def _num_changed(self, change):
+            print("{name} changed from {old} to {new}".format(**change))
+    -----------------------------------------ScriptEnd----------------------------------------------------------
+    
+    and is passed the following dictionary when called:
+
+    ----------------------------------ScriptStart-------------------------------------------------------------
+    {
+    'owner': object,  # The HasTraits instance
+    'new': 6,         # The new value
+    'old': 5,         # The old value
+    'name': "foo",    # The name of the changed trait
+    'type': 'change', # The event type of the notification, usually 'change'
+    }
+    ----------------------------------ScriptEnd----------------------------------------------------------------
+
+    Validation and coercion
+    Each trait type (Int, Unicode, Dict etc.) may have its own validation or coercion logic. 
+    In addition, we can register custom cross-validators that may depend on the state of other attributes. 
+    For example:
+    
+    --------------------------------ScriptStart---------------------------------------------------------------
+    from traitlets import HasTraits, TraitError, Int, Bool, validate
+
+    class Parity(HasTraits):
+        value = Int()
+        parity = Int()
+
+        @validate('value')
+        def _valid_value(self, proposal):
+            if proposal['value'] % 2 != self.parity:
+                raise TraitError('value and parity should be consistent')
+            return proposal['value']
+
+        @validate('parity')
+        def _valid_parity(self, proposal):
+            parity = proposal['value']
+            if parity not in [0, 1]:
+                raise TraitError('parity should be 0 or 1')
+            if self.value % 2 != parity:
+                raise TraitError('value and parity should be consistent')
+            return proposal['value']
+
+    parity_check = Parity(value=2)
+
+    # Changing required parity and value together while holding cross validation
+    # with parity_check.hold_trait_notifications():
+    
+        parity_check.value = 1
+        parity_check.parity = 1
+
+    However, we recommend that custom cross-validators don't modify the state of the HasTraits instance.   
+
+wcwidth==0.2.5
+    This library is mainly for CLI programs that carefully produce output for Terminals, 
+    or make pretend to be an emulator.
+
+    Problem Statement: The printable length of most strings are equal to the number of cells they occupy on the screen 1 charater : 1 cell. 
+    However, there are categories of characters that occupy 2 cells (full-wide), and others that occupy 0 cells (zero-width).
+
+    Solution: POSIX.1-2001 and POSIX.1-2008 conforming systems provide wcwidth(3) and wcswidth(3) C functions of which this python module’s functions precisely 
+    copy. These functions return the number of cells a unicode string is expected to occupy.
+
+    Example
+    Problem: given the following phrase (Japanese),
+
+    ----------------ScriptStart------------------------------
+    
+    >>>  text = u'コンニチハ'
+    
+    ----------------ScriptEnd---------------------------------
+    
+    Python incorrectly uses the string length of 5 codepoints rather than the printible length of 10 cells,
+    so that when using the rjust function, the output length is wrong:
+    
+    ----------------ScriptStart------------------------------
+    
+    >>> print(len('コンニチハ'))
+    5
+
+    >>> print('コンニチハ'.rjust(20, '_'))
+    _____コンニチハ
+
+    --------------------ScriptEnd-------------------------------
+
+    By defining our own “rjust” function that uses wcwidth, we can correct this:
+
+    --------------------ScriptStart------------------------------
+
+    >>> def wc_rjust(text, length, padding=' '):
+    ...    from wcwidth import wcswidth
+    ...    return padding * max(0, (length - wcswidth(text))) + text
+    ...
+    
+    -------------------ScriptEnd-----------------------------------
+    
+    Our Solution uses wcswidth to determine the string length correctly:
+    
+    -------------------ScriptStart---------------------------------------
+    
+    >>> from wcwidth import wcswidth
+    >>> print(wcswidth('コンニチハ'))
+    10
+
+    >>> print(wc_rjust('コンニチハ', 20, '_'))
+    __________コンニチハ
+    -------------------ScriptEnd----------------------------------------------
+    
+    Choosing a Version
+    Export an environment variable, UNICODE_VERSION. 
+    This should be done by terminal emulators or 
+    those developers experimenting with authoring one of their own, from shell:
+    -------------CLI-----------------------
+
+    $ export UNICODE_VERSION=13.0
+    
+    --------------CLIend-------------------
+
+    If unspecified, the latest version is used. If your Terminal Emulator does not export this variable, 
+    you can use the jquast/ucs-detect utility to automatically detect and export it to your shell.
+
+    wcwidth, wcswidth
+    Use function wcwidth() to determine the length of a single unicode character, 
+    and wcswidth() to determine the length of many, a string of unicode characters.
+
+    Briefly, return values of function wcwidth() are:
+
+    -1
+    
+    Indeterminate (not printable).
+    0
+    
+    Does not advance the cursor, such as NULL or Combining.
+    2
+    
+    Characters of category East Asian Wide (W) or East Asian Full-width (F) which are displayed using two terminal cells.
+    1
+    
+    All others.
+    Function wcswidth() simply returns the sum of all values for each character along a string, or -1 when it occurs anywhere along a string.

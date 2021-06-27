@@ -83,16 +83,52 @@ def myGroups(request):
 #    return render(request, "myGroups.html", context)
 
 
-def allGroups(request):
-    if 'user_id' in request.session:
-        this_user=Users.objects.filter(id=request.session['user_id'])
-        context = {
-        'user': this_user[0],
-        # need second db to contine @gustavo
+#def allGroups(request, name):
+#    if 'user_id' in request.session:
+##        this_user=Users.objects.filter(id=request.session['user_id'])
+ #       context = {
+ #       'user': this_user[0],
+ #       'allGroups': Group.objects.all(),
+ #   }
+ #       return render(request, 'allGroups.html', context)
+ #   else:
+ #       return redirect('/')
+
+
+
+def myGroups(request):
+    if not 'user_id' in request.session:
+        return redirect("/")
+   # allGroups = Group.objects.exclude(user)
+    context = {
+    #        "allGroups": allGroups,
+            "x": Group.objects.all(),
+            "user": Users.objects.get(id=request.session['user_id']),
     }
-        return render(request, 'allGroups.html', context)
-    else:
-        return redirect('/')
+    return render(request, "myGroups.html", context)
+
+def myGroups_delete(request, id):  #applies when hitting edit button on the main page
+    desc = Group.objects.get(id=id)
+    desc.delete()
+    return redirect("/myGroups")
+
+
+#def allGroups(request, user):
+def allGroups(request):
+    if not 'user_id' in request.session:
+        return redirect("/")
+   # allGroups = Group.objects.exclude(user)
+    context = {
+    #        "allGroups": allGroups,
+            "allGroups": Group.objects.all(),
+            "user": Users.objects.get(id=request.session['user_id']),
+    }
+    return render(request, "allGroups.html", context)
+
+def allGroups_delete(request, id):  #applies when hitting edit button on the main page
+    desc = Group.objects.get(id=id)
+    desc.delete()
+    return redirect("/allGroups")
 
 #-------------END------------------------------
 
@@ -112,20 +148,38 @@ def new(request):
     this_user = Users.objects.get(id = request.session['user_id'])
     return render(request, 'create.html')
 
-def create(request):
+def create(request): #jaime added, remove and use below...
     if request.method == 'POST':
         errors = Group.objects.basic_validator(request.POST)
-        if len(errors) != 0:
-            for k,v in errors.items():
-                messages.error(request, v)
-            return redirect('/new')
-        Group.objects.create(
-            name = request.POST['name'],
-            genre = request.POST['genre'],
-            desc = request.POST['desc'],
-            owner = Users.objects.get(id=request.session['user_id'])
-        )
-        return redirect('/dashboard')
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+                return redirect("/new")  
+        else:
+            x = Group.objects.create(
+                name=request.POST['name'], 
+                genre=request.POST['genre'], 
+                desc=request.POST['desc'], 
+               # owner=request.POST['owner'], 
+                owner = Users.objects.get(id=request.session['user_id']))
+            x.save()
+    return redirect("/dashboard")
+
+
+#def create(request):
+#    if request.method == 'POST':
+#        errors = Group.objects.basic_validator(request.POST)
+#        if len(errors) != 0:
+#            for k,v in errors.items():
+#                messages.error(request, v)
+#            return redirect('/new')
+#        Group.objects.create(
+#            name = request.POST['name'],
+#            genre = request.POST['genre'],
+#            desc = request.POST['desc'],
+#            owner = Users.objects.get(id=request.session['user_id'])
+#        )
+#        return redirect('/dashboard')
 
 def users_groups(request, id):
     if 'user_id' not in request.session:

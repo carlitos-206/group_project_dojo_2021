@@ -17,31 +17,37 @@
             <h2>Welcome to the All Groups Page!</h2>
         </div>
         <div>
-            <table style="width:100">
+            <table>
                 <h3>All Groups, except my own: <h3>
                     <tr>
-                        <th>Group Name</th>
                         <th>Group Host</th>
-                        <th>Group Member Count</th>
-                        <th>Group Rules</th>
+                        <th>Group Name</th>
+                        <th>Group Genre</th>
+                        <th>Group Description</th>
+                        <th>Group Host</th>
+                   <!-- <th>Group Member Count</th> -->
+                   <!--  <th>Group Rules</th>-->
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th>Delete</th>
                     </tr>
-                    {% for x in x %}  <!---x comes from views function -->
-                        {% if x.user.id == request.session.user_id %}
-                            <tr>
-                                <th>{{x.name}}</th>
-                                <th>{{x.host}}</th>
-                                <th>{{x.count}}</th>
-                                <th>{{x.rules}}</th>
-                                <th>{{x.created_at}}</th>
-                                <th>{{x.updated_at}}</th>
-                                <th>
-                                    <a href="/myGroups/{{x.name}}/delete">Remove</a>
-                                </th>
-                            </tr>
-                        {% endif %}
+                    {% for allGroups in allGroups %}  <!---x comes from views function -->
+                    <tr>
+                        <th>{{allGroups.owner}}</th>
+                        <th>{{allGroups.name}}</th>
+                        <th>{{allGroups.name}}</th>
+                        <th>{{allGroups.genre}}</th>
+                        <th>{{allGroups.desc}}</th>
+                        <th>{{allGroups.owner}}</th>
+                        <th>{{allGroups.created_at}}</th>
+                        <th>{{allGroups.updated_at}}</th>
+                        <th>
+                            <a href="/allGroups/{{allGroups.id}}/delete">Remove</a>
+                        </th>
+                    </tr>
+            <!--       {% if allGroups.user.id == request.session.user_id %} -->
+                   
+                      <!--  {% endif %} -->
                     {% endfor %}
             </table>
         </div>

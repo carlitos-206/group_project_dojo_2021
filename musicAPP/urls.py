@@ -20,6 +20,8 @@ urlpatterns=[
 #path('myGroups/<str:name>', views.myGroups),
 path('myGroups', views.myGroups),
 path('allGroups', views.allGroups),
+path('allGroups/<int:id>/delete', views.allGroups_delete),
+path('myGroups/<int:id>/delete', views.myGroups_delete),
 
 #--------END-----------
 

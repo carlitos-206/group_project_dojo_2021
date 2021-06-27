@@ -21,22 +21,20 @@ p {
 }
 
 body {
-    background-color:lightblue;
+    background-color:white;
   }
 
-  table, th, td {
+  table, th, tr {
     border: 1px solid olive;
+    color: black;
   }
 
   table {
-    width: 60%;
+    width: 80%;
   
   }
 
-th {
-    color:black;
 
-}
 .main{
     width: 1600px;
     height: 2000px;
