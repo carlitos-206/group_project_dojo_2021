@@ -103,6 +103,8 @@ def myGroups(request):
     return render(request, "myGroups.html", context)
 
 def myGroups_delete(request, id):  #applies when hitting edit button on the main page
+    if not 'user_id' in request.session:
+        return redirect("/")
     desc = Group.objects.get(id=id)
     desc.delete()
     return redirect("/myGroups")
@@ -123,10 +125,7 @@ def allGroups(request):
     }
     return render(request, "allGroups.html", context)
 
-def allGroups_delete(request, id):  #applies when hitting edit button on the main page
-    desc = Group.objects.get(id=id)
-    desc.delete()
-    return redirect("/allGroups")
+
 
 #-------------END------------------------------
 
