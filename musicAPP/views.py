@@ -50,14 +50,15 @@ def farewell(request):
 def dashboard(request):
     if 'user_id' in request.session:
         this_user=Users.objects.filter(id=request.session['user_id'])
+        newest_group = Group.objects.filter(owner=this_user[0])
         context = {
         'user': this_user[0],
-        # need second db to contine @gustavo
+        'this_group': Group.objects.filter(owner=this_user[0]).order_by('created_at'),
+        'group_added': Group.objects.filter(joined=this_user[0])
     }
         return render(request, 'dashboard.html', context)
     else:
         return redirect('/')
-
 #-------------END------------------------------------
 
 
@@ -225,7 +226,21 @@ def users_groups(request, group_owner_id):
         return redirect('/')
     other_users = Users.objects.filter(id=group_owner_id)
     context = {
+        'this_user': other_users[0],
         'this_group': Group.objects.filter(owner=other_users[0])
     }
     return render(request, 'other_user_groups.html', context)
+
+def join(request, group_id):
+    this_group = Group.objects.get(id=group_id)
+    this_user = Users.objects.get(id=request.session['user_id'])
+    if this_user == this_group.owner:
+        messages.error(request, "You're the host of this group")
+        return redirect(f'users_groups/{group_id}')
+    if this_user in this_group.joined.all():
+        messages.error(request, "You're already in this group")
+        return redirect(f'users_groups/{group_id}')
+    else:
+        this_user.members.add(this_group)
+        return redirect('/dashboard')
 #---------------END--------------------------
