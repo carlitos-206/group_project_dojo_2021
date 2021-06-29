@@ -159,8 +159,7 @@ def create(request): #jaime added, remove and use below...
             x = Group.objects.create(
                 name=request.POST['name'], 
                 genre=request.POST['genre'], 
-                desc=request.POST['desc'], 
-               # owner=request.POST['owner'], 
+                desc=request.POST['desc'],
                 owner = Users.objects.get(id=request.session['user_id']))
             x.save()
     return redirect("/dashboard")

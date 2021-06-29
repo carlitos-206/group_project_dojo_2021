@@ -91,6 +91,7 @@ class Group(models.Model):
     genre = models.CharField(max_length=255)
     desc = models.TextField()
     owner = models.ForeignKey(Users, related_name = 'group_leader', on_delete=models.CASCADE)
+    joined=models.ManyToManyField(Users, related_name='members')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = GroupManager()
