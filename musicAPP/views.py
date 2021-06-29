@@ -223,10 +223,9 @@ def create(request):
 def users_groups(request, group_owner_id):
     if 'user_id' not in request.session:
         return redirect('/')
-    current_user = Users.objects.get(id=request.session['user_id'])
-    other_users = Users.objects.filter(owner = group_owner_id)
+    other_users = Users.objects.filter(id=group_owner_id)
     context = {
-        'this_user': other_users
+        'this_group': Group.objects.filter(owner=other_users[0])
     }
     return render(request, 'other_user_groups.html', context)
 #---------------END--------------------------
