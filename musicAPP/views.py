@@ -164,22 +164,6 @@ def create(request): #jaime added, remove and use below...
             x.save()
     return redirect("/dashboard")
 
-
-#def create(request):
-#    if request.method == 'POST':
-#        errors = Group.objects.basic_validator(request.POST)
-#        if len(errors) != 0:
-#            for k,v in errors.items():
-#                messages.error(request, v)
-#            return redirect('/new')
-#        Group.objects.create(
-#            name = request.POST['name'],
-#            genre = request.POST['genre'],
-#            desc = request.POST['desc'],
-#            owner = Users.objects.get(id=request.session['user_id'])
-#        )
-#        return redirect('/dashboard')
-
 def users_groups(request, id):
     if 'user_id' not in request.session:
         return redirect('/')
