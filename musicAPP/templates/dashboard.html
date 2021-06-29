@@ -51,6 +51,24 @@
                     <th>Actions</th>
                 </tr>
             </thead>
+            <tbody>
+                {% for group in this_group %}
+                <tr>
+                    <td>{{group.name}}</td>
+                    <td>{{group.owner}}</td>
+                    <td>{{group.joined}}</td>
+                    <td>{{group.rules}}</td>
+                    <td>{{group.rules}}</td>
+                    <td><a href=""></a></td>
+                </tr>
+                {% endfor %}
+                {% for group in group_added%}
+                
+                    <tr>
+                        <td>{{group.name}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
     </table>
     </div>
 </body>
