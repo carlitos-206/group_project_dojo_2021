@@ -114,10 +114,10 @@ def myGroups(request):
   #  return redirect("/myGroups")
 
 
-def myGroups_delete(request, id):
+def myGroups_delete(request, group_id):
     owner = request.session['user_id']
-    if Group.objects.filter(id=id, owner=owner):
-        myGroup=Group.objects.get(id=id)
+    if Group.objects.filter(id=group_id, owner=owner):
+        myGroup=Group.objects.get(id=group_id)
         myGroup.delete()
         return redirect('/myGroups')
     else:
