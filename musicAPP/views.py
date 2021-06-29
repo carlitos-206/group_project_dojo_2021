@@ -83,8 +83,8 @@ def edit(request, group_id):
     
 def update(request, group_id):
     errors = Group.objects.GroupManager(request.POST)
-        if len(errors) > 0 :
-            for key, value in errors.items():
+    if len(errors) > 0 :
+        for key, value in errors.items():
             messages.error(request, value)
         return redirect('edit/{group_id}')
     to_update = Group.objects.get(id=group_id)
@@ -97,7 +97,7 @@ def update(request, group_id):
 
 def group_chat(request, group_id):
     if 'user_id' in request.session:
-        this owner=request.session['user_id']
+        this_member=request.session['user_id']
         if Group.objects.filter(id=group_id, member=this_member):
             a_group = Group.objects.get(id=group_id)
             group_messages = Wall_Message.objects.filter(group_id = group_id)
