@@ -36,6 +36,7 @@ path('myGroups/<int:group_id>/delete', views.myGroups_delete),
 #-----URLS GUSTAVO--------------
 path('new', views.new),
 path('create', views.create),
-path('users_groups/<int:group_owner_id>', views.users_groups)
+path('users_groups/<int:group_owner_id>', views.users_groups),
+path('join/<int:group_id>', views.join)
 #------END---------------
 ]
