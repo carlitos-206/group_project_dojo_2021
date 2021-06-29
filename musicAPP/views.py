@@ -102,15 +102,29 @@ def myGroups(request):
     
     return render(request, "myGroups.html", context)
 
-def myGroups_delete(request, id):  #applies when hitting edit button on the main page
-    if not 'user_id' in request.session:
-        return redirect("/")
-    desc = Group.objects.get(id=id)
-    desc.delete()
-    return redirect("/myGroups")
+#def myGroups_delete(request, id):  #applies when hitting edit button on the main page
+   # if not 'user_id' in request.session:
+  #      return redirect("/")
+
+  #  user = Users.objects.get(id=request.session['user_id'])
+   # request.session['user_id'] = user.id
+ #   if user.id == 'user_id':
+ #       desc = Group.objects.get(id=id)
+  #      desc.delete()
+  #  return redirect("/myGroups")
 
 
-#def allGroups(request, user):
+def myGroups_delete(request, id):
+    owner = request.session['user_id']
+    if Group.objects.filter(id=id, owner=owner):
+        myGroup=Group.objects.get(id=id)
+        myGroup.delete()
+        return redirect('/myGroups')
+    else:
+        messages.error(request, "Only host can delete thier group")
+        return redirect('/dashboard')
+
+
 def allGroups(request):
     if not 'user_id' in request.session:
         return redirect("/")
