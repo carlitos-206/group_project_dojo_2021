@@ -8,8 +8,9 @@
 </head>
 <body>
     <div class="wrapper">
-        <h1>Hello World</h1>
-
+        {% for group in this_group %}
+            <h1>{{group.owner.username}}'s Groups</h1>
+        {% endfor %}
     </div>
 </body>
 </html>
