@@ -8,5 +8,20 @@
 </head>
 <body>
     <H1>ADIOS!</H1>
+    <h3>test</h3>
+    <---!def myGroups(request):
+    if not 'user_id' in request.session:
+        return redirect("/")
+
+    user = Users.objects.get(id=request.session['user_id'])
+    x = Group.objects.filter(owner=user.id)
+
+    context = {
+            "x": x,
+            "user": user,
+    }
+    
+    return render(request, "myGroups.html", context)--->
+
 </body>
 </html>
