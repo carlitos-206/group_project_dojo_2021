@@ -65,5 +65,12 @@ class Users(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     objects=UserManager()
+    
+class Wall_Message(models.Model):
+    message = models.CharField(max_length=255)
+    poster = models.ForeignKey(Users, related_name='user_messages', on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, related_name='group_messages', on_delete=models.CASCADE)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
 
 #---------------------------END-----------------------------------------
