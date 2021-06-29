@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Users
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 import bcrypt
 
 #Everyone make sure to write in the given space this will make it easier to debug
@@ -71,33 +72,47 @@ def dashboard(request):
 def edit(request, group_id):
     if 'user_id' in request.session:
         this_owner=request.session['user_id']
-        if {tableXXX}.objects.filter(id=group_id, owner=this_owner):
+        if Group.objects.filter(id=group_id, owner=this_owner):
             a_group = Group.objects.get(id=group_id)
             context = {
                 'group': a_group
             }
             return render(request, 'edit.html', context)
-        else:
-            return redirect('/')
     else:
         return redirect('/')
     
 def update(request, group_id):
-    errors = Group.objects.XXX_validator(request.POST)
+    errors = Group.objects.GroupManager(request.POST)
         if len(errors) > 0 :
             for key, value in errors.items():
             messages.error(request, value)
         return redirect('edit/{group_id}')
-    to_update = Group.objects.git(id=group_id)
-    to_update.group_name = request.POST['group_name']
-    to_update.group_genre = request.POST['group_genre']
+    to_update = Group.objects.get(id=group_id)
+    to_update.group_name = request.POST['name']
+    to_update.group_genre = request.POST['genre']
     to_update.time_date = request.POST['time_date']
     to_update.save()
     return redirect('/')
 
 
+def group_chat(request, group_id):
+    if 'user_id' in request.session:
+        this owner=request.session['user_id']
+        if Group.objects.filter(id=group_id, member=this_member):
+            a_group = Group.objects.get(id=group_id)
+            group_messages = Wall_Message.objects.filter(group_id = group_id)
+            context = {'group':a_group, 'group_messages': group_messages}
+        return render(request, 'group_chat.html', context)
+    else:
+        return redirect('/')
     
-    
+def post_mess(request, group_id):
+    Wall_Message.objects.create(
+        message=request.POST['mess'],
+        poster=User.objects.get(id=request.session['user_id']),
+        group=Group.objects.get(id=group_id)
+    )
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 #--------------END--------------------------
 
 

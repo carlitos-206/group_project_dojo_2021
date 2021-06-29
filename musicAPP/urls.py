@@ -24,6 +24,8 @@ urlpatterns=[
 #-------URLS CONNOR------------
     path('edit/<int:group_id>', views.edit),
     path('update/<int:group_id>', views.update),
+    path('group_chat/<int:group_id>', views.group_chat),
+    path('process_message/<int:group_id>', views.post_mess),
 #------END-----------------------
 
 #-----URLS GUSTAVO--------------
