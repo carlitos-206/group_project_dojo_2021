@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User's Groups</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" href="https://cdn.iconscout.com/icon/premium/png-512-thumb/man-listening-music-1652772-1401150.png">
+</head>
+<body>
+    <div class="pure-menu pure-menu-horizontal pure-menu-scrollable" id="main_table">
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item">
+                <a href="/dashboard" class="pure-menu-link">Home</a>
+            </li>
+            <li class="pure-menu-item">
+                <a href="/new" class="pure-menu-link">Create group</a>
+            </li>
+            <li class="pure-menu-item">
+                <a href="/myGroups" class="pure-menu-link">View my groups</a>
+                <!--     <a href="/myGroups/{{x.name}}">View my groups</a> -->
+            </li>
+            <li class="pure-menu-item">
+                <a href="/allGroups" class="pure-menu-link">View other groups</a>
+                <!--     <a href="/allGroups/{{x.name}}">View all groups</a> -->
+            </li>
+            <li class="pure-menu-item">
+                <a href="/logout" class="pure-menu-link">Log Out</a>
+            </li>
+    <div class="wrapper">
+        <h1>{{this_user.username}}'s Groups</h1>
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                        <th>Group Name</th>
+                        <th>Group Genre</th>
+                        <th>Group Description</th>
+                        <th>Group Member Count</th>
+                        <th>Group Rules</th>
+                        <th>Group Meets</th>
+                        <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for group in this_group %}
+                <tr>
+                    <td>{{group.name}}</td>
+                    <td>{{group.genre}}</td>
+                    <td>{{group.desc}}</td>
+                    <td>{{group.joined.all.count}}</td>
+                    <td>{{group.rules}}</td>
+                    <td>{{group.day}} | {{group.time}}</td>
+                    <td><a href="/join/{{group.id}}">Join</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

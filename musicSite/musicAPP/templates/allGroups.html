@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% load static %}
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/groups.css' %}">
+        <link rel="icon" href="https://cdn.iconscout.com/icon/premium/png-512-thumb/man-listening-music-1652772-1401150.png">
+        <title>All Groups!</title>
+    </head>
+    <body>
+        <div class="pure-menu pure-menu-horizontal pure-menu-scrollable" id="main_table">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item">
+                    <a href="/dashboard" class="pure-menu-link">Home</a>
+                </li>
+                <li class="pure-menu-item">
+                    <a href="/new" class="pure-menu-link">Create group</a>
+                </li>
+                <li class="pure-menu-item">
+                    <a href="/myGroups" class="pure-menu-link">View my groups</a>
+                </li>
+                
+                <li class="pure-menu-item">
+                    <a href="/logout" class="pure-menu-link">Log Out</a>
+                </li>
+            
+        </div>
+        <div>
+            <h5>Hello {{user.username}} ! </h5><br>
+            <h2>Welcome to the All Groups Page!</h2>
+        </div>
+        <div>
+            <table>
+                <h3>All Groups, except my own: <h3>
+                    <a href="/allGroups">Refresh</a>
+                    <thead>
+                        <th>Group Host</th>
+                        <th>Name</th>
+                        <th>Genre</th>
+                        <th>Description</th>
+                        <th>Members</th>
+                        <th>Rules</th>
+                        <th>Meets</th>
+                        <th>Actions</th>
+                        
+                    </thead>
+                    
+                     <!---x comes from views function -->
+                    <tbody> 
+                    {% for group in allGroups %}
+                        <tr>
+                            <td><a href="/users_groups/{{group.owner.id}}">{{group.owner.username}}</a></td>
+                            <td>{{group.name}}</td>
+                            <td>{{group.genre}}</td>
+                            <td>{{group.desc}}</td>
+                            <td>{{group.joined.all.count}}</td>
+                            <td>{{group.rules}}</td>
+                            <td>{{group.day}} @ {{group.time}}</td>
+                            <td><a href="/join/{{group.id}}">Join</a></td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+            <a href="/allGroups">Refresh</a>
+        </div>
+    </body>
+</html>

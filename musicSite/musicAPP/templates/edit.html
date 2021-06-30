@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="icon" href="https://cdn.iconscout.com/icon/premium/png-512-thumb/man-listening-music-1652772-1401150.png">
+    <title>Edit Group</title>
+</head>
+<body>
+    <h1>Edit Show</h1>
+<div class="errors" style="position: absolute; left:600px">
+    {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+<div class="pure-menu pure-menu-horizontal pure-menu-scrollable" id="main_table">
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item">
+            <a href="/dashboard" class="pure-menu-link">Home</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="/new" class="pure-menu-link">Create group</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="/myGroups" class="pure-menu-link">View my groups</a>
+            <!--     <a href="/myGroups/{{x.name}}">View my groups</a> -->
+        </li>
+        <li class="pure-menu-item">
+            <a href="/allGroups" class="pure-menu-link">View other groups</a>
+            <!--     <a href="/allGroups/{{x.name}}">View all groups</a> -->
+        </li>
+        <li class="pure-menu-item">
+            <a href="/logout" class="pure-menu-link">Log Out</a>
+        </li>
+    <form action="/group/{{group.id}}/update" method="POST">
+        {% csrf_token %}
+            <div class="form-group">
+                <label for="group_name">Name</label>
+                <input type="text" name="name"value="{{group.name}}">
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <input type="text" name="genre" value="{{group.genre}}">
+            </div>
+            <div class="form-group">
+                <label for="dayWeek"><span title="What day of the week should the group meet?!">Group Meeting</span></label>
+                <select name="day" id="dayWeek">
+                    <option value="{{group.day}}">{{group.day}}</option>
+                    <option value="sunday"></option>Sunday</option>
+                    <option value="monday">Monday</option>
+                    <option value="tuesday">Tuesday</option>
+                    <option value="wednesday">Wednesday</option>
+                    <option value="thursday">Thursday</option>
+                    <option value="friday">Friday</option>
+                    <option value="saturday">Saturday</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="time"><span title="What time is best?!">Group Meeting</span></label>
+                <input type="time" name="time" value='{{group.time|date:"H:i"}}'>
+            </div>
+            <div class="form-group">
+                <label for="group_desc">Description</label>
+                <textarea name="desc" cols="30" rows="10">{{group.desc}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="group_rules">Rules</label>
+                <textarea name="rules" cols="30" rows="5">{{group.rules}}</textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn-primary" value="Edit">
+            </div>
+            <div>
+                <a href="/dashboard">Cancel</a>
+            </div>
+    </form>
+</body>
+</html>
