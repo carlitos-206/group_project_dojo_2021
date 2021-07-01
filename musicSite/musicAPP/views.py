@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Users, Group
+from .models import Users, Group, Wall_Message
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 import bcrypt
@@ -205,7 +205,7 @@ def group_chat(request, group_id):
     
 def post_mess(request, group_id):
     if 'user_id' in request.session:
-        errors = Group.objects.basic_validator(request.POST)
+        errors = Wall_Message.objects.wall_validator(request.POST)
         if len(errors) > 0 :
             for key, value in errors.items():
                 messages.error(request, value)
