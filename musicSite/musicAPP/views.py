@@ -176,7 +176,6 @@ def update(request, group_id):
         return redirect(f'/edit/{group_id}')
     else:
         to_update = Group.objects.get(id=group_id)
-        to_update.group_name = request.POST['name']
         to_update.group_genre = request.POST['genre']
         to_update.time_date = request.POST['time']
         to_update.save()
