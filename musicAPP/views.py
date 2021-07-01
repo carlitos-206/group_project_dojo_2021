@@ -126,7 +126,6 @@ def myGroups_delete(request, group_id):
         messages.error(request, "Only host can delete thier group")
         return redirect('/dashboard')
 
-
 def allGroups(request):
     if not 'user_id' in request.session:
         return redirect("/")

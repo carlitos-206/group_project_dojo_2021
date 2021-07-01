@@ -21,7 +21,7 @@ urlpatterns=[
 path('myGroups', views.myGroups),
 path('allGroups', views.allGroups),
 path('myGroups/<int:group_id>/delete', views.myGroups_delete),
-######path('/myGroups/{{x.id}}/delete', views.myGroups_edit) - update/uncomment after Edit Page is completed by Connor
+path('myGroups/<int:group_id>/edit', views.edit),
 
 #--------END-----------
 
