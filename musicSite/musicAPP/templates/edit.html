@@ -44,10 +44,6 @@
     <form action="/group/{{group.id}}/update" method="POST">
         {% csrf_token %}
             <div class="form-group">
-                <label for="group_name">Name</label>
-                <input type="text" name="name"value="{{group.name}}">
-            </div>
-            <div class="form-group">
                 <label for="genre">Genre</label>
                 <input type="text" name="genre" value="{{group.genre}}">
             </div>
