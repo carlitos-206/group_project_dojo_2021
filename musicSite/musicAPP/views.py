@@ -178,7 +178,7 @@ def update(request, group_id):
         to_update = Group.objects.get(id=group_id)
         to_update.group_name = request.POST['name']
         to_update.group_genre = request.POST['genre']
-        to_update.time_date = request.POST['time_date']
+        to_update.time_date = request.POST['time']
         to_update.save()
     return redirect('/dashboard')
 
