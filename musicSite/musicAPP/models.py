@@ -74,8 +74,6 @@ class GroupManager(models.Manager):
     def basic_validator(request, postData):
         errors= {}
         existing_group = Group.objects.filter(name=postData['name'])
-        if existing_group:
-            errors['group_exist'] = "Group already exist"
         if len(postData['name']) < 3:
             errors['group_name'] = "Group name must contain at least 3 characters"
         if len(postData['genre']) < 3:
@@ -86,12 +84,24 @@ class GroupManager(models.Manager):
             errors['group_desc'] = "Description Field Required"
         if len(postData['rules'])<1:
             errors['group_rules']="Group must have some form of rules"
+        if existing_group:
+            errors['group_exist'] = "Group already exist"
         return errors
 
     def member_count(request, postData):
         members=len(postData['joined'])
         return members
-
+    def update_validator(request, postData):
+        errors={}
+        if len(postData['genre']) < 3:
+            errors['group_genre'] = "Genre must contain at least 3 characters"
+        if len(postData['desc']) < 10:
+            errors['group_desc'] = "Description must contain least 10 characters"
+        if len(postData['desc']) == 0:
+            errors['group_desc'] = "Description Field Required"
+        if len(postData['rules'])<1:
+            errors['group_rules']="Group must have some form of rules"
+        return errors
 class Group(models.Model):
     name = models.CharField(max_length=255)
     genre = models.CharField(max_length=255)
@@ -112,7 +122,7 @@ class WallManager(models.Manager):
     def wall_validator(request, postData):
         errors={}
         if len(postData['message'])<1:
-            errors['missing_message'] = "Need to write Something atleast"
+            errors['missing_message'] = "Need to write Something at least"
         return errors
 
 class Wall_Message(models.Model):
@@ -122,3 +132,6 @@ class Wall_Message(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     objects= WallManager()
+
+#--------------------------END-------------------------------------------------
+

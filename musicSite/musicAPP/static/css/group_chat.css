@@ -1,10 +1,11 @@
-*{
+* {
     padding: 0px;
     margin: 0px;
 }
 body {
     max-width: 1920px;
     margin: 0 auto;
+    background-color: pink;
     position: relative;
 }
 
@@ -29,12 +30,12 @@ svg.hamburger {
     display: none;
 }
 @media only screen and (max-width:480px) {
-
+    #wrapper{
+        z-index: -1;
+        background-color: rgb(66, 57, 57);
+    }
     #skip-mobile{
         display: none;
-    }
-    #skip-big{
-        display: block;
     }
     .main-navigation {
         display: none;
@@ -46,7 +47,7 @@ svg.hamburger {
 
     .navigation--responsive {
         display: block;
-        background: linear-gradient(to top,  #000000, #9f9f9f);
+        background: linear-gradient(to top, #000000, #9f9f9f);
         width: 200px;
         height: 100vh;
         position: fixed;
@@ -58,6 +59,7 @@ svg.hamburger {
         padding: 0;
         transition: top 1s;
     }
+ 
     .navigation--responsive ul {
         display: block;
         list-style: none;
@@ -69,198 +71,198 @@ svg.hamburger {
         margin: 85px 0 0 0;
         padding: 0;
     }
+
     .navigation--responsive ul li {
         margin: 0;
         padding: 0;
     }
+
     .navigation--responsive li a {
         padding: 50px 20px 50px 30px;
         text-decoration:none;
         color:black;
         font-family:sans-serif;
     }  
-    #toggle:checked ~ .navigation--responsive {
+  
+   #toggle:checked ~ .navigation--responsive {
         top: 0vh;
         z-index: +1;
-    }
-    #title {
-        font-size: x-large;
-        font-weight: bolder;
+    } 
+    .group-box{
+        color: black;
         position: relative;
-        left: 25%;
-        top: 35px;
-        width: fit-content;
+        top: 65px;
+        z-index: -1;
+        left: 3%;
     }
-    #errors{
+    .post-box{
+        color: black;
         position: relative;
-        background-color: #000000;
-        display: block;
-        color: red;
+        left: 3%;
+        top: 65px;
     }
-    #tableData{
-        display: block;
-        z-index: +1;
-    }
-    #main-table{
-        padding: 5px;
+    #post-btn{
         position: relative;
-        top: 50px;
-        display: block;
-        width: fit-content;
+        left: 65%;
+        width: 100px;
     }
-    #group-name{
-        width: 150px;
-    }
-    #drag{
-        display: block;
+    .feed{
+        color: black;
         position: relative;
-        left: 45%;
-        top: 50px;
-        width: fit-content;
-        z-index: +1;
+        top: 45px;
+        left: 3%;
+        z-index: -1;
     }
-    #instructionBtn{
-        border-radius: 5%;
-        width: 190px;
-        height: 30px;
-    }
-} 
-@media only screen and (min-width:481px){
-    #skip-mobile{
-        display: none;
-    }
-    #skip-big{
-        display: block;
-    }
-    .main-navigation {
-        display: none;
-    }
-
-    svg.hamburger {
-        display: block;
-    }
-
-    .navigation--responsive {
-        display: block;
-        background: linear-gradient(to top,  #000000, #9f9f9f);
-        width: 200px;
-        height: 100vh;
-        position: fixed;
-        top: -100vh;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        margin: 0;
-        padding: 0;
-        transition: top 1s;
-    }
-    .navigation--responsive ul {
-        display: block;
-        list-style: none;
-        height: 70vh;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: space-around;
-        margin: 85px 0 0 0;
-        padding: 0;
-    }
-    .navigation--responsive ul li {
-        margin: 0;
-        padding: 0;
-    }
-    .navigation--responsive li a {
-        padding: 50px 20px 50px 30px;
-        text-decoration:none;
-        color:black;
-        font-family:sans-serif;
-    }  
-    #toggle:checked ~ .navigation--responsive {
-        top: 0vh;
-        z-index: +1;
-    }
-    #title {
-        font-size: x-large;
-        font-weight: bolder;
-        position: relative;
-        left: 25%;
-        top: 35px;
-        width: fit-content;
-    }
-    #errors{
-        position: relative;
-        background-color: #000000;
-        display: block;
-        color: red;
-    }
-    #tableData{
-        display: block;
-        z-index: +1;
-    }
-    #main-table{
-        padding: 5px;
-        position: relative;
-        top: 50px;
-        display: block;
-        width: fit-content;
-    }
-    #group-name{
-        width: 150px;
-    }
-    #drag{
-        display: block;
-        position: relative;
-        left: 30%;
-        top: 50px;
-        width: fit-content;
-        z-index: +1;
-    }
-    #instructionBtn{
-        border-radius: 5%;
-        width: 190px;
-        height: 30px;
+    .post_data{
+        background-color: darkgray;
+        color: black;
+        outline: black 1px solid;
+        width: 95%;
     }
 }
-@media only screen and (min-width:1024px){
-    #skip-big{
+
+@media only screen and (min-width:481px){
+    #wrapper{
+        z-index: -1;
+        background-color: rgb(66, 57, 57);
+    }
+    #skip-mobile{
         display: none;
+    }
+    .main-navigation {
+        display: none;
+    }
+
+    svg.hamburger {
+        display: block;
+    }
+
+    .navigation--responsive {
+        display: block;
+        background: linear-gradient(to top, #000000, #9f9f9f);
+        width: 200px;
+        height: 100vh;
+        position: fixed;
+        top: -100vh;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: 0;
+        padding: 0;
+        transition: top 1s;
+    }
+ 
+    .navigation--responsive ul {
+        display: block;
+        list-style: none;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
+        margin: 85px 0 0 0;
+        padding: 0;
+    }
+
+    .navigation--responsive ul li {
+        margin: 0;
+        padding: 0;
+    }
+
+    .navigation--responsive li a {
+        padding: 50px 20px 50px 30px;
+        text-decoration:none;
+        color:black;
+        font-family:sans-serif;
+    }  
+  
+   #toggle:checked ~ .navigation--responsive {
+        top: 0vh;
+        z-index: +1;
+    } 
+    .group-box{
+        color: black;
+        position: relative;
+        top: 70px;
+        z-index: -1;
+        left: 3%;
+    }
+    .post-box{
+        color: black;
+        position: relative;
+        left: 3%;
+        top: 70px;
+    }
+    #mess{
+        position: relative;
+        top: 3px;
+    }
+    #post-btn{
+        position: relative;
+        left: 10%;
+        width: 100px;
+    }
+    .feed{
+        color: black;
+        position: relative;
+        top: 65px;
+        left: 3%;
+        z-index: -1;
+    }
+    .post_data{
+        background-color: darkgray;
+        color: black;
+        outline: black 1px solid;
+        width: 95%;
+    }
+}
+
+@media only screen and (min-width:1024px){
+    #wrapper{
+        z-index: -1;
+        background-color: rgb(66, 57, 57);
+    }
+    #skip-big{
+        display:none ;
     }
     #skip-mobile{
         display: block;
         position: relative;
-        left: 17%;
+        left: 20%;
     }
-    #title {
-        font-size: x-large;
-        font-weight: bolder;
+    .group-box{
         position: relative;
-        left: 27%;
-        top: 65px;
-        width: fit-content;
-    }
-    #errors{
-        position: relative;
-        background-color: #000000;
-        display: block;
-        color: red;
-    }
-    #tableData{
-        display: block;
-        z-index: +1;
-    }
-    #main-table{
-        position: relative;
-        top: 50px;
+        top: 40px;
         left: 10%;
-        display: block;
-        width: fit-content;
     }
-    #group-name{
-        width: 150px;
+    .post-box{
+        position: relative;
+        left: 50%;
+        top: -230px;
     }
-    #drag{
-        display: none;
+    #mess{
+        position: relative;
+        top: 3px;
     }
+    #post-btn{
+        position: relative;
+        width: 100px;
+        top: 35px;
+        left: -10%;
+    }
+    .feed{
+        position: relative;
+        left: 20%;
+        top: -100px;
+    }
+    .post_data{
+        outline: black 1px solid;
+        width: 50%;
+    }
+    .a-tags{
+        position: relative;
+    }
+
 }
 /* @media only screen and (max-width:480px){
 

@@ -53,8 +53,8 @@ def dashboard(request):
         newest_group = Group.objects.filter(owner=this_user[0])
         context = {
         'user': this_user[0],
-        'this_group': Group.objects.filter(owner=this_user[0]).order_by('created_at'),
-        'group_added': Group.objects.filter(joined=this_user[0])
+        'this_group': Group.objects.filter(owner=this_user[0]).order_by('-updated_at'),
+        'group_added': Group.objects.filter(joined=this_user[0]).order_by('-updated_at')
     }
         return render(request, 'dashboard.html', context)
     else:
@@ -70,31 +70,6 @@ def dropGroup(request, group_id):
 
 
 #------------JAIME VIEWS----------------------
-#def myGroups(request, name):
-
-
-# if not 'user_id' in request.session:
-#   return redirect("/")
-#       context = {
-#            "x": myGroups.objects.all(),
-#            "user": User.objects.get(id=request.session['user_id']),
-#    }
-#    return render(request, "myGroups.html", context)
-
-
-#def allGroups(request, name):
-#    if 'user_id' in request.session:
-##        this_user=Users.objects.filter(id=request.session['user_id'])
- #       context = {
- #       'user': this_user[0],
- #       'allGroups': Group.objects.all(),
- #   }
- #       return render(request, 'allGroups.html', context)
- #   else:
- #       return redirect('/')
-
-
-
 
 def myGroups(request):
     if not 'user_id' in request.session:
@@ -109,17 +84,6 @@ def myGroups(request):
     }
     
     return render(request, "myGroups.html", context)
-
-#def myGroups_delete(request, id):  #applies when hitting edit button on the main page
-   # if not 'user_id' in request.session:
-  #      return redirect("/")
-
-  #  user = Users.objects.get(id=request.session['user_id'])
-   # request.session['user_id'] = user.id
- #   if user.id == 'user_id':
- #       desc = Group.objects.get(id=id)
-  #      desc.delete()
-  #  return redirect("/myGroups")
 
 
 def myGroups_delete(request, group_id):
@@ -136,12 +100,10 @@ def myGroups_delete(request, group_id):
 def allGroups(request):
     if not 'user_id' in request.session:
         return redirect("/")
-   # allGroups = Group.objects.exclude(user)
     user = Users.objects.get(id=request.session['user_id'])
     allGroups = Group.objects.exclude(owner=user.id).exclude(joined=user)
 
     context = {
-    #        "allGroups": allGroups,
             "allGroups": allGroups,
             "user": user,
     }
@@ -168,17 +130,18 @@ def edit(request, group_id):
         return redirect('/')
     
 def update(request, group_id):
-    #errors = Group.objects.GroupManager(request.POST)
-    errors = Group.objects.basic_validator(request.POST)
+    errors = Group.objects.update_validator(request.POST)
     if len(errors) > 0 :
         for key, value in errors.items():
             messages.error(request, value)
         return redirect(f'/edit/{group_id}')
     else:
         to_update = Group.objects.get(id=group_id)
-        to_update.group_name = request.POST['name']
-        to_update.group_genre = request.POST['genre']
-        to_update.time_date = request.POST['time_date']
+        to_update.genre = request.POST['genre']
+        to_update.time = request.POST['time']
+        to_update.day= request.POST['day']
+        to_update.desc=request.POST['desc']
+        to_update.rules=request.POST['rules']
         to_update.save()
     return redirect('/dashboard')
 
@@ -186,26 +149,22 @@ def update(request, group_id):
 def group_chat(request, group_id):
     if 'user_id' in request.session:
         this_member=request.session['user_id']
-        if Group.objects.filter(id=group_id, owner=this_member):
+        if Group.objects.filter(id=group_id, owner=this_member) or  Group.objects.filter(id=group_id, joined=this_member):
             a_group = Group.objects.get(id=group_id)
             group_messages = Wall_Message.objects.filter(group_id = group_id)
-            context = {'group':a_group, 'group_messages': group_messages}
-            return render(request, 'group_chat.html', context)
-        if Group.objects.filter(id=group_id, joined=this_member):
-            a_group = Group.objects.get(id=group_id)
-            group_messages = Wall_Message.objects.filter(id = group_id)
             context = {
                 'group':a_group, 
-                'group_messages': group_messages
-                }
+                'group_messages': group_messages.order_by('-created_at')
+            }
             return render(request, 'group_chat.html', context)
         else:
             messages.error(request, "Need to be member to interact")
             return redirect('/dashboard')
-    
+    else:
+        return redirect("/")
 def post_mess(request, group_id):
     if 'user_id' in request.session:
-        errors = Group.objects.basic_validator(request.POST)
+        errors = Wall_Message.objects.wall_validator(request.POST)
         if len(errors) > 0 :
             for key, value in errors.items():
                 messages.error(request, value)

@@ -1,0 +1,456 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+body {
+    max-width: 1920px;
+    margin: 0 auto;
+    background-color: pink;
+    position: relative;
+}
+
+label[for="toggle"] {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    color: black;
+    z-index: 6;
+    font-size: 3rem;
+}
+
+.navigation--responsive {
+    display: none;
+}
+
+#toggle {
+    display: none;
+}
+
+svg.hamburger {
+    display: none;
+}
+@media only screen and (max-width:480px) {
+    #wrapper{
+        z-index: -1;
+        background-color: rgb(66, 57, 57);
+    }
+    #skip-mobile{
+        display: none;
+    }
+    .main-navigation {
+        display: none;
+    }
+
+    svg.hamburger {
+        display: block;
+    }
+
+    .navigation--responsive {
+        display: block;
+        background: linear-gradient(to top,  #000000, #9f9f9f);
+        width: 200px;
+        height: 100vh;
+        position: fixed;
+        top: -100vh;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: 0;
+        padding: 0;
+        transition: top 1s;
+    }
+    .navigation--responsive ul {
+        display: block;
+        list-style: none;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
+        margin: 85px 0 0 0;
+        padding: 0;
+    }
+    .navigation--responsive ul li {
+        margin: 0;
+        padding: 0;
+    }
+    .navigation--responsive li a {
+        padding: 50px 20px 50px 30px;
+        text-decoration:none;
+        color:black;
+        font-family:sans-serif;
+    }  
+    #toggle:checked ~ .navigation--responsive {
+        top: 0vh;
+        z-index: +1;
+    }
+    #title {
+        position: relative;
+        left: 30%;
+        top: 5px;
+        width: fit-content;
+    }
+    #errors{
+        background-color: #000000;
+        display: block;
+        position: relative;
+        top: 25px;
+        color: red;
+    }
+    .create-form{
+        position: relative;
+        top: 35px;
+        left: 1.5%;
+    }
+    .labels{
+        font-weight: bolder;
+        width: fit-content;
+    }
+    #input-name{
+        position: relative;
+        left: 35%;
+        height:25px;
+        width: 50%;
+    }
+    #input-genre{
+        position: relative;
+        left: 22%;
+        height: 25px;
+        width: 50%;
+    }
+    #input-day{
+        position: relative;
+        left: 8%;
+        width: 50%;
+    }
+    #input-time{
+        position: relative;
+        left: 6%;
+        width: 50%;
+    }
+    #label-desc{
+        position: relative;
+        top: -150px
+    }
+    #input-desc{
+        position: relative;
+        left: 5%;
+    }
+    #label-rules{
+        position: relative;
+        top:-150px;
+    }
+    #input-rules{
+        position: relative;
+        left:17%;
+    }
+    #create-btn{
+        position: relative;
+        left: 73.75%;
+    }
+    #cancel-tag{
+        position: relative;
+        left: 55%;
+        top:-41px;
+    }
+}
+@media only screen and (min-width:481px) {
+    #wrapper{
+        z-index: -1;
+        background-color: rgb(66, 57, 57);
+    }
+    #skip-mobile{
+        display: none;
+    }
+    .main-navigation {
+        display: none;
+    }
+
+    svg.hamburger {
+        display: block;
+    }
+
+    .navigation--responsive {
+        display: block;
+        background: linear-gradient(to top,  #000000, #9f9f9f);
+        width: 200px;
+        height: 100vh;
+        position: fixed;
+        top: -100vh;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: 0;
+        padding: 0;
+        transition: top 1s;
+    }
+    .navigation--responsive ul {
+        display: block;
+        list-style: none;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
+        margin: 85px 0 0 0;
+        padding: 0;
+    }
+    .navigation--responsive ul li {
+        margin: 0;
+        padding: 0;
+    }
+    .navigation--responsive li a {
+        padding: 50px 20px 50px 30px;
+        text-decoration:none;
+        color:black;
+        font-family:sans-serif;
+    }  
+    #toggle:checked ~ .navigation--responsive {
+        top: 0vh;
+        z-index: +1;
+    }
+    #title {
+        font-size: 32px;
+        position: relative;
+        left: 30%;
+        top: -15px;
+        width: fit-content;
+    }
+    #errors{
+        background-color: #000000;
+        display: block;
+        position: relative;
+        top: -25px;
+        color: red;
+    }
+    .create-form{
+        font-size: 24px;
+        position: relative;
+        top: 5px;
+        left: 15%;
+    }
+    .labels{
+        font-weight: bolder;
+        width: fit-content;
+    }
+    #label-name{
+        position: relative;
+        width: fit-content;
+    }
+    #input-name{
+        padding: 1px;
+        padding-bottom: 5px;
+        display: block;
+        width: 40%;
+        position: relative;
+        left: 3%;
+        height:32px;
+        width: 30%;
+    }
+    #label-genre{
+        position: relative;
+        width: fit-content;
+    }
+    #input-genre{
+        padding: 1px;
+        padding-bottom: 5px;
+        display: block;
+        width: 40%;
+        position: relative;
+        left: 3%;
+        height: 32px;
+        width: 30%;
+    }
+    #label-day{
+        width: fit-content;
+        position: relative;
+        bottom: 1px;
+    }
+    #input-day{
+        padding: 1px;
+        padding-bottom: 5px;
+        display: block;
+        width: 37%;
+        position: relative;
+        left: 3%;
+        height: 38px;
+        width: 30%;
+        top: 2px;
+    }
+    #input-time{
+        padding: 1px;
+        padding-bottom: 5px;
+        display: block;
+        width: 37%;
+        position: relative;
+        left: 3%;
+        width: 30%;
+    }
+    #label-desc{
+        position: relative;
+    }
+    #input-desc{
+        padding: 1px;
+        padding-bottom: 5px;
+        display: block;
+        display: block;
+        width: 39%;
+        position: relative;
+        left: 3%;
+    }
+    #label-rules{
+        position: relative;
+        top:-15px;
+    }
+    #input-rules{
+        padding: 1px;
+        padding-bottom: 5px;
+        display: block;
+        display: block;
+        width: 40%;
+        height: 300px;
+        position: relative;
+        left:3%;
+    }
+    #create-btn{
+        position: relative;
+        top: 12px;
+        left: 47%;
+    }
+    #cancel-tag{
+        position: relative;
+        left: 35%;
+        top:-41px;
+    }
+}
+@media only screen and (min-width:1024px){
+    #wrapper{
+        z-index: -1;
+        background-color: rgb(66, 57, 57);
+    }
+    #skip-big{
+        display: none;
+    }
+    #skip-mobile{
+        display: block;
+        font-size: x-large;
+        position: relative;
+        left: 20%;
+        bottom: 125px;
+    }
+
+    #title {
+        font-size: 32px;
+        position: relative;
+        left: 30%;
+        top: 75px;
+        width: fit-content;
+    }
+    #errors{
+        background-color: #000000;
+        display: block;
+        position: relative;
+        top: 50px;
+        color: red;
+        text-align-last: center;
+    }
+    .create-form{
+        font-size: 24px;
+        position: relative;
+        top: 5px;
+        left: 20%;
+    }
+    .labels{
+        font-weight: bolder;
+        width: fit-content;
+    }
+    #label-name{
+        position: relative;
+        width: fit-content;
+    }
+    #input-name{
+        padding: 1px;
+        padding-bottom: 5px;
+        display: block;
+        width: 40%;
+        position: relative;
+        left: 3%;
+        height:32px;
+        width: 30%;
+    }
+    #label-genre{
+        position: relative;
+        width: fit-content;
+    }
+    #input-genre{
+        padding: 1px;
+        padding-bottom: 5px;
+        display: block;
+        width: 40%;
+        position: relative;
+        left: 3%;
+        height: 32px;
+        width: 30%;
+    }
+    #label-day{
+        width: fit-content;
+        position: relative;
+        bottom: 1px;
+    }
+    #input-day{
+        padding: 1px;
+        padding-bottom: 5px;
+        display: block;
+        width: 37%;
+        position: relative;
+        left: 3%;
+        height: 38px;
+        width: 30%;
+        top: 2px;
+    }
+    #input-time{
+        padding: 1px;
+        padding-bottom: 5px;
+        display: block;
+        width: 37%;
+        position: relative;
+        left: 3%;
+        width: 30%;
+    }
+    #label-desc{
+        position: relative;
+    }
+    #input-desc{
+        padding: 1px;
+        padding-bottom: 5px;
+        display: block;
+        display: block;
+        width: 39%;
+        position: relative;
+        left: 3%;
+    }
+    #label-rules{
+        position: relative;
+        top:-15px;
+    }
+    #input-rules{
+        padding: 1px;
+        padding-bottom: 5px;
+        display: block;
+        display: block;
+        width: 40%;
+        height: 300px;
+        position: relative;
+        left:3%;
+    }
+    #create-btn{
+        position: relative;
+        top: 12px;
+        left: 44%;
+    }
+    #cancel-tag{
+        position: relative;
+        left: 35%;
+        top:-41px;
+    }
+}

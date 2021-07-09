@@ -1,0 +1,373 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  margin: 0 auto;
+  background-color: pink;
+  position: relative;
+}
+
+label[for="toggle"] {
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  color: black;
+  z-index: 6;
+  font-size: 3rem;
+}
+
+.navigation--responsive {
+  display: none;
+}
+
+#toggle {
+  display: none;
+}
+
+svg.hamburger {
+  display: none;
+}
+@media only screen and (max-width:480px){
+  .skip-mobile{
+    display: none;
+}
+  .main-navigation {
+    display: none;
+}
+
+svg.hamburger {
+    display: block;
+}
+
+.navigation--responsive {
+    display: block;
+    background: linear-gradient(to top,  #000000, #9f9f9f);
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: -100vh;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    transition: top 1s;
+}
+.navigation--responsive ul {
+    display: block;
+    list-style: none;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin: 85px 0 0 0;
+    padding: 0;
+}
+.navigation--responsive ul li {
+    margin: 0;
+    padding: 0;
+}
+.navigation--responsive li a {
+    padding: 50px 20px 50px 30px;
+    text-decoration:none;
+    color:black;
+    font-family:sans-serif;
+}  
+#toggle:checked ~ .navigation--responsive {
+    top: 0vh;
+    z-index: +1;
+}
+  h1, h2, h3, h4, h5{
+      text-shadow: 2px 2px 5px blue;
+      font-family: "Lucida Console", "Courier New", monospace;
+    }
+    
+    h5 {
+    text-align: center;
+    }
+    
+    a {
+    color:orchid;
+    }
+    
+    button {
+      background-color:lightslategrey;
+      color: blue;
+    }
+    
+    p {
+      color:black;
+    }
+    
+    body {
+      background-color:lightblue;
+    }
+    
+    table, th, td {
+      border: 1px solid olive;
+    }
+    
+    th {
+    color:black;
+    height: 35px;
+    }
+    #drag{
+      position: relative;
+      left: 30%;
+      top: 67px;
+      width: fit-content;
+      z-index: +1;
+    }
+    #instructionBtn{
+    
+      border-radius: 5%;
+      width: 190px;
+      height: 30px;
+    }
+    #main-title{
+      width: fit-content;
+      position: relative;
+      top: 10px;
+      left: 30%;
+    }
+    #main-title-h2{
+      width: fit-content;
+    }
+    #main-table{
+      position: relative;
+      top: 25px;
+      left: 2%;
+    }
+} 
+@media only screen and (min-width:1024px){
+  .skip-mobile{
+    display: block;
+}
+  #skip-big{
+    display: none;
+  }
+  #skip-menu{
+    display: block;
+    position: relative;
+    left: 25%;
+  }
+  .main-navigation {
+    display: none;
+}
+
+svg.hamburger {
+    display: block;
+}
+
+.navigation--responsive {
+    display: block;
+    background: linear-gradient(to top,  #000000, #9f9f9f);
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: -100vh;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    transition: top 1s;
+}
+.navigation--responsive ul {
+    display: block;
+    list-style: none;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin: 85px 0 0 0;
+    padding: 0;
+}
+.navigation--responsive ul li {
+    margin: 0;
+    padding: 0;
+}
+.navigation--responsive li a {
+    padding: 50px 20px 50px 30px;
+    text-decoration:none;
+    color:black;
+    font-family:sans-serif;
+}  
+#toggle:checked ~ .navigation--responsive {
+    top: 0vh;
+    z-index: +1;
+}
+  h1, h2, h3, h4, h5{
+      text-shadow: 2px 2px 5px blue;
+      font-family: "Lucida Console", "Courier New", monospace;
+    }
+    
+    h5 {
+    text-align: center;
+    }
+    
+    a {
+    color:orchid;
+    }
+    
+    button {
+      background-color:lightslategrey;
+      color: blue;
+    }
+    
+    p {
+      color:black;
+    }
+    
+    body {
+      background-color:lightblue;
+    }
+    
+    table, th, td {
+      border: 1px solid olive;
+    }
+    
+    th {
+    color:black;
+    height: 35px;
+    }
+    #drag{
+      display: none;
+    }
+    #main-title-h2{
+      font-size: 38px;
+      position: relative;
+      width: fit-content;
+      top: 35px;
+      left: 5%;
+    }
+    #main-table{
+      position: relative;
+      font-size: 28px;
+      top: 25px;
+      left: 1%;
+    }
+} 
+@media only screen and (min-width:481px){
+  .skip-mobile{
+    display: none;
+}
+  .main-navigation {
+    display: none;
+}
+
+svg.hamburger {
+    display: block;
+}
+
+.navigation--responsive {
+    display: block;
+    background: linear-gradient(to top,  #000000, #9f9f9f);
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: -100vh;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    transition: top 1s;
+}
+.navigation--responsive ul {
+    display: block;
+    list-style: none;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin: 85px 0 0 0;
+    padding: 0;
+}
+.navigation--responsive ul li {
+    margin: 0;
+    padding: 0;
+}
+.navigation--responsive li a {
+    padding: 50px 20px 50px 30px;
+    text-decoration:none;
+    color:black;
+    font-family:sans-serif;
+}  
+#toggle:checked ~ .navigation--responsive {
+    top: 0vh;
+    z-index: +1;
+}
+  h1, h2, h3, h4, h5{
+      text-shadow: 2px 2px 5px blue;
+      font-family: "Lucida Console", "Courier New", monospace;
+    }
+    
+    h5 {
+    text-align: center;
+    }
+    
+    a {
+    color:orchid;
+    }
+    
+    button {
+      background-color:lightslategrey;
+      color: blue;
+    }
+    
+    p {
+      color:black;
+    }
+    
+    body {
+      background-color:lightblue;
+    }
+    
+    table, th, td {
+      border: 1px solid olive;
+    }
+    
+    th {
+    color:black;
+    height: 35px;
+    }
+    #drag{
+      position: relative;
+      left: 12%;
+      top: 67px;
+      z-index: +1;
+    }
+    #instructionBtn{
+    
+      border-radius: 5%;
+      width: 190px;
+      height: 30px;
+    }
+    #main-title{
+      position: relative;
+      top: 10px;
+      left: 12%;
+    }
+    #main-table{
+      position: relative;
+      top: 25px;
+      left: 2%;
+    }
+} 
+
+/* @media only screen and (max-width:480px){
+
+} 
+
+@media only screen and (min-width:481px){
+
+}
+@media only screen and (min-width:1024px){
+
+}
+*/

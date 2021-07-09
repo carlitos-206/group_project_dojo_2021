@@ -7,39 +7,39 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     {% load static %}
     <link rel="icon" href="https://cdn.iconscout.com/icon/premium/png-512-thumb/man-listening-music-1652772-1401150.png">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/group_chat.css' %}">
     <title>Group Chat</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
-<script>
-// if theres time I'll make it work -carlos
-
-   // var idleTime = 0;
-   // $(document).ready(function () {
-        // Increment the idle time counter every minute.
-        //var idleInterval = setInterval(timerIncrement, 5000); // 1 minute
-
-        // Zero the idle timer on mouse movement.
-        //$(this).mousemove(function (e) {
-          //  idleTime = 0;
-        //});
-        //$(this).keypress(function (e) {
-        //    idleTime = 0;
-      //  });
-    //});
-
-    //function timerIncrement() {
-        //idleTime = idleTime + 1;
-        //if (idleTime > 0) { // 20 minutes
-        //    window.location.reload();
-      //  }
-    //}
-</script>
-
-<body>
-    <div class="pure-menu pure-menu-horizontal pure-menu-scrollable" id="main_table">
-        <ul class="pure-menu-list">
+<body id="wrapper">
+    <div  id="skip-big" class="new-menu">
+        <label for="toggle">
+            <i class="fas fa-bars hamburger"></i>
+        </label>
+        <input type="checkbox" id="toggle" name="toggle">
+            <nav class="navigation--responsive">
+                <ul>
+                    <li>
+                        <a href="/dashboard" class="pure-menu-link">Home</a>
+                    </li>
+                    <li>
+                        <a href="/new" class="pure-menu-link">Create group</a>
+                    </li>
+                    <li>
+                        <a href="/myGroups" class="pure-menu-link">View my groups</a>
+                    </li>
+                    <li>
+                        <a href="/allGroups" class="pure-menu-link">View other groups</a>
+                    </li>
+                    <li>
+                        <a href="/logout" class="pure-menu-link">Log Out</a>
+                    </li> 
+                </ul>
+            </nav>
+    </div>
+    <div  id="skip-mobile" class="pure-menu pure-menu-horizontal pure-menu-scrollable" id="main_table">
+        <div class="pure-menu-list">
             <li class="pure-menu-item">
                 <a href="/dashboard" class="pure-menu-link">Home</a>
             </li>
@@ -54,39 +54,49 @@
             </li>
             <li class="pure-menu-item">
                 <a href="/logout" class="pure-menu-link">Log Out</a>
-            </li>
-    <h1>{{group.name}}</h1>
-    <h3>Genre:{{group.genre}}</h3>
-    <h3>Group Owner: {{group.owner.username}}</h3>
-
-    <h2>Add A Post!</h2>
-    <div class="errors">
-        {%if messages%}
-        <ul>
-            {%for message in messages%}
-            <li style="margin: 10px; padding:10px">{{message}}</li>
-            {%endfor%}
-        </ul>
-        {%endif%}
+            </li> 
+        </div>
     </div>
-    <div>
-        <form action="/process_message/{{ group.id }}" method=POST>
-            {% csrf_token %}
-            <textarea name="message" id="mess" cols="30" rows="10"></textarea>
-            <input type="submit" value='POST'>
-        </form>
+    <div class="group-box">
+        <h1>{{group.name}}</h1>
+        <h3>Genre:  {{group.genre}}</h3>
+        <h3>Host: {{group.owner.username}}</h3>
+        <h3>Rules: {{group.rules}}</h3>
+        <h3>Meets: {{group.day}} @ {{group.time}}</h3>
+        <h3>Total Members: {{group.joined.all.count}}</h3>
+        <h3>Description: {{group.desc}}</h3>
     </div>
-    <h3>Feed <a href="/group_chat/{{group.id}}">Refresh</a></h3>
-    <div>
-        {% for post in group_messages %}
-            <div class="post_data">
-                <h2>{{post.message}}</h2>
-                <p>{{post.poster.username}}</p>
-                <p>{{post.created_at}}</p>
-
-            </div>
-        {% endfor %}
+    <div class="post-box">
+        <h2>Add A Post!</h2>
+        <div class="errors">
+            {%if messages%}
+                <ul>
+                    {%for message in messages%}
+                        <li style="margin: 10px; padding:10px">{{message}}</li>
+                    {%endfor%}
+                </ul>
+            {%endif%}
+        </div>
+        <div>
+            <form action="/process_message/{{ group.id }}" method=POST>
+                {% csrf_token %}
+                    <textarea name="message" id="mess" cols="49" rows="10"></textarea>
+                    <input type="submit" id="post-btn"value='POST'>
+            </form>
+        </div>
     </div>
-    <h3><a href="/group_chat/{{group.id}}">Refresh</a></h3>
+    <div class="feed">
+        <h3 id="feed-title">Feed | <a class="a-tags" href="/group_chat/{{group.id}}">Refresh</a></h3>
+        <div id="dm">
+            {% for post in group_messages %}
+                <div class="post_data">
+                    <h2>- {{post.message}}</h2>
+                    <p>by: {{post.poster.username}} | {{post.created_at}}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <h3><a class="a-tags" href="/group_chat/{{group.id}}">Refresh</a></h3>
+    </div>
 </body>
+<script defer src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script>
 </html>

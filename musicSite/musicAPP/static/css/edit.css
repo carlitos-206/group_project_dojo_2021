@@ -1,0 +1,540 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body {
+    max-width: 1920px;
+    margin: 0 auto;
+    position: relative;
+}
+
+label[for="toggle"] {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    color: black;
+    z-index: 6;
+    font-size: 3rem;
+}
+
+.navigation--responsive {
+    display: none;
+}
+
+#toggle {
+    display: none;
+}
+
+svg.hamburger {
+    display: none;
+}
+@media only screen and (max-width:480px) {
+    #wrapper{
+        z-index: -1;
+    }
+    #skip-mobile{
+        display: none;
+    }
+    #skip-big{
+        display: block;
+    }
+    .main-navigation {
+        display: none;
+    }
+
+    svg.hamburger {
+        display: block;
+    }
+
+    .navigation--responsive {
+        display: block;
+        background: linear-gradient(to top,  #000000, #9f9f9f);
+        width: 200px;
+        height: 100vh;
+        position: fixed;
+        top: -100vh;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: 0;
+        padding: 0;
+        transition: top 1s;
+    }
+    .navigation--responsive ul {
+        display: block;
+        list-style: none;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
+        margin: 85px 0 0 0;
+        padding: 0;
+    }
+    .navigation--responsive ul li {
+        margin: 0;
+        padding: 0;
+    }
+    .navigation--responsive li a {
+        padding: 50px 20px 50px 30px;
+        text-decoration:none;
+        color:black;
+        font-family:sans-serif;
+    }  
+    #toggle:checked ~ .navigation--responsive {
+        top: 0vh;
+        z-index: +1;
+    }
+    #title {
+        position: relative;
+        left: 30%;
+        top: 5px;
+        width: fit-content;
+    }
+    #errors{
+        position: relative;
+        background-color: #000000;
+        display: block;
+        color: red;
+    }
+    .edit-form{
+        position: relative;
+        top: 35px;
+
+    }
+    .labels{
+        position: relative;
+        top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        width: fit-content;
+    }
+    #input-name{
+        position: relative;
+        left: 35%;
+        height:25px;
+        width: 50%;
+    }
+    #input-genre{
+        position: relative;
+        left: 22%;
+        height: 25px;
+        width: 50%;
+        top: 10px;
+    }
+    #input-day{
+        position: relative;
+        left: 8%;
+        width: 50%;
+        top: 15px;
+
+    }
+    #input-time{
+        position: relative;
+        left: 6%;
+        width: 50%;
+        top: 20px;
+    }
+    #label-desc{
+        position: relative;
+        top: -150px
+    }
+    #input-desc{
+        position: relative;
+        left: 5%;
+        top:25px;
+    }
+    #label-rules{
+        position: relative;
+        top:-50px;
+    }
+    #input-rules{
+        position: relative;
+        left:17%;
+        top: 30px;
+    }
+    #edit-btn{
+        width: 100px;
+        top: 30px;
+        position: relative;
+        left: 70%;
+    }
+    #cancel-tag{
+        position: relative;
+        left: 54%;
+        top:10px;
+    }
+}
+@media only screen and (max-width:480px) {
+    #wrapper{
+        z-index: -1;
+    }
+    #skip-mobile{
+        display: none;
+    }
+    #skip-big{
+        display: block;
+    }
+    .main-navigation {
+        display: none;
+    }
+
+    svg.hamburger {
+        display: block;
+    }
+
+    .navigation--responsive {
+        display: block;
+        background: linear-gradient(to top,  #000000, #9f9f9f);
+        width: 200px;
+        height: 100vh;
+        position: fixed;
+        top: -100vh;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: 0;
+        padding: 0;
+        transition: top 1s;
+    }
+    .navigation--responsive ul {
+        display: block;
+        list-style: none;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
+        margin: 85px 0 0 0;
+        padding: 0;
+    }
+    .navigation--responsive ul li {
+        margin: 0;
+        padding: 0;
+    }
+    .navigation--responsive li a {
+        padding: 50px 20px 50px 30px;
+        text-decoration:none;
+        color:black;
+        font-family:sans-serif;
+    }  
+    #toggle:checked ~ .navigation--responsive {
+        top: 0vh;
+        z-index: +1;
+    }
+    #title {
+        position: relative;
+        left: 30%;
+        top: 5px;
+        width: fit-content;
+    }
+    #errors{
+        position: relative;
+        background-color: #000000;
+        display: block;
+        color: red;
+    }
+    .edit-form{
+        position: relative;
+        top: 35px;
+
+    }
+    .labels{
+        position: relative;
+        top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        width: fit-content;
+    }
+    #input-name{
+        position: relative;
+        left: 35%;
+        height:25px;
+        width: 50%;
+    }
+    #input-genre{
+        position: relative;
+        left: 22%;
+        height: 25px;
+        width: 50%;
+        top: 10px;
+    }
+    #input-day{
+        position: relative;
+        left: 8%;
+        width: 50%;
+        top: 15px;
+
+    }
+    #input-time{
+        position: relative;
+        left: 6%;
+        width: 50%;
+        top: 20px;
+    }
+    #label-desc{
+        position: relative;
+        top: -150px
+    }
+    #input-desc{
+        position: relative;
+        left: 5%;
+        top:25px;
+    }
+    #label-rules{
+        position: relative;
+        top:-50px;
+    }
+    #input-rules{
+        position: relative;
+        left:17%;
+        top: 30px;
+    }
+    #edit-btn{
+        width: 100px;
+        top: 30px;
+        position: relative;
+        left: 70%;
+    }
+    #cancel-tag{
+        position: relative;
+        left: 54%;
+        top:10px;
+    }
+}
+@media only screen and (min-width:481px) {
+    #wrapper{
+
+    }
+    #skip-mobile{
+        display: none;
+    }
+    .main-navigation {
+        display: none;
+    }
+
+    svg.hamburger {
+        display: block;
+    }
+
+    .navigation--responsive {
+        display: block;
+        background: linear-gradient(to top,  #000000, #9f9f9f);
+        width: 200px;
+        height: 100vh;
+        position: fixed;
+        top: -100vh;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: 0;
+        padding: 0;
+        transition: top 1s;
+    }
+    .navigation--responsive ul {
+        display: block;
+        list-style: none;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
+        margin: 85px 0 0 0;
+        padding: 0;
+    }
+    .navigation--responsive ul li {
+        margin: 0;
+        padding: 0;
+    }
+    .navigation--responsive li a {
+        padding: 50px 20px 50px 30px;
+        text-decoration:none;
+        color:black;
+        font-family:sans-serif;
+    }  
+    #toggle:checked ~ .navigation--responsive {
+        top: 0vh;
+        z-index: +1;
+    }
+    #title {
+        font-size: 32px;
+        position: relative;
+        left: 30%;
+        top: -15px;
+        width: fit-content;
+    }
+    #errors{
+        background-color: #000000;
+        display: block;
+        position: relative;
+        top: -25px;
+        color: red;
+    }
+    .edit-form{
+        font-size: 24px;
+        position: relative;
+        top: 5px;
+        left: 10%;
+        width: fit-content;
+    }
+    .labels{
+        position: relative;
+        top: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        width: fit-content;
+    }
+    #input-name{
+        position: relative;
+        left: 35%;
+        height:25px;
+        width: 50%;
+    }
+    #input-genre{
+        position: relative;
+        left: 22%;
+        height: 25px;
+        width: 50%;
+        top: 11px;
+    }
+    #input-day{
+        position: relative;
+        left: 8%;
+        width: 50%;
+        top: 15px;
+
+    }
+    #input-time{
+        height: fit-content;
+        position: relative;
+        left: 6%;
+        width: 50%;
+        top: 22px;
+    }
+    #label-desc{
+        position: relative;
+        top: -150px
+    }
+    #input-desc{
+        position: relative;
+        left: 5%;
+        top:25px;
+    }
+    #label-rules{
+        position: relative;
+        top:-50px;
+    }
+    #input-rules{
+        position: relative;
+        left:17%;
+        top: 30px;
+    }
+    #edit-btn{
+        width: 100px;
+        top: 41px;
+        position: relative;
+        left: 73%;
+    }
+    #cancel-tag{
+        position: relative;
+        left: 54%;
+        top:10px;
+    }
+}
+@media only screen and (min-width:1024px){
+    #skip-big{
+        display: none;
+    }
+    #skip-mobile{
+        display: block;
+        font-size: x-large;
+        position: relative;
+        left: 5%;
+        bottom: 125px;
+    }
+
+    #title {
+        font-size: 32px;
+        position: relative;
+        top: 85px;
+        left: 25%;
+        width: fit-content;
+    }
+    #errors{
+        background-color: #000000;
+        display: block;
+        position: relative;
+        top: -25px;
+        color: red;
+    }
+    .edit-form{
+        font-size: 24px;
+        position: relative;
+        top: 5px;
+        left: 10%;
+        width: fit-content;
+    }
+    .labels{
+        position: relative;
+        top: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        width: fit-content;
+    }
+    #input-name{
+        position: relative;
+        left: 35%;
+        height:25px;
+        width: 50%;
+    }
+    #input-genre{
+        position: relative;
+        left: 22%;
+        height: 25px;
+        width: 50%;
+        top: 12px;
+    }
+    #input-day{
+        position: relative;
+        left: 8%;
+        width: 50%;
+        top: 15px;
+
+    }
+    #input-time{
+        height: fit-content;
+        position: relative;
+        left: 6%;
+        width: 50%;
+        top: 22px;
+    }
+    #label-desc{
+        position: relative;
+        top: -150px
+    }
+    #input-desc{
+        position: relative;
+        left: 10%;
+        top:25px;
+    }
+    #label-rules{
+        position: relative;
+        top:-50px;
+    }
+    #input-rules{
+        position: relative;
+        left:23%;
+        top: 30px;
+    }
+    #edit-btn{
+        width: 100px;
+        top: 41px;
+        position: relative;
+        left: 73%;
+    }
+    #cancel-tag{
+        position: relative;
+        left: 54%;
+        top:10px;
+    }
+}

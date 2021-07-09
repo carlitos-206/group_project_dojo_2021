@@ -7,75 +7,106 @@
     {% load static %}
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
     <link rel="icon" href="https://cdn.iconscout.com/icon/premium/png-512-thumb/man-listening-music-1652772-1401150.png">
     <title>Dashboard</title>
 </head>
+<script>
+    $(document).ready(function(){
+        $("#instructionBtn").click(function(){
+            alert("Drag to the left!");
+        })
+    });
+</script>
 <body>
     <div class="wrapper">
-    <div class="text-center">
-            <div>Welcome:{{user.username}}</div>
-    </div>
-    <div class="errors">
-        {%if messages%}
-        <ul>
-            {%for message in messages%}
-            <li style="margin: 10px; padding:10px">{{message}}</li>
-            {%endfor%}
-        </ul>
-        {%endif%}
-    </div>
-    <div class="pure-menu pure-menu-horizontal pure-menu-scrollable" id="main_table">
-        <ul class="pure-menu-list">
-            <li class="pure-menu-item">
-                <a href="/new" class="pure-menu-link">Create group</a>
-            </li>
-            <li class="pure-menu-item">
-                <a href="/myGroups" class="pure-menu-link">View my groups</a>
-                <!--     <a href="/myGroups/{{x.name}}">View my groups</a> -->
-            </li>
-            <li class="pure-menu-item">
-                <a href="/allGroups" class="pure-menu-link">View other groups</a>
-                <!--     <a href="/allGroups/{{x.name}}">View all groups</a> -->
-            </li>
-            <li class="pure-menu-item">
-                <a href="/logout" class="pure-menu-link">Log Out</a>
-            </li>
-    <table>
-        <table class="pure-table pure-table-horizontal">
-            <thead>
-                <tr>
-                    <th>Group Name</th>
-                    <th>Host</th>
-                    <th>Members</th>
-                    <th>Rules</th>
-                    <th>meets</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for group in this_group %}
-                <tr>
-                    <td><a href="/group_chat/{{group.id}}">{{group.name}}</a></td>
-                    <td><a href="/myGroups">{{group.owner.username}}</a></td>
-                    <td>{{group.joined.all.count}}</td>
-                    <td>{{group.rules}}</td>
-                    <td>{{group.day}} @ {{group.time}}</td>
-                    <td><a href="edit/{{group.id}}">Edit</a> | <a href="myGroups/{{group.id}}/delete">Delete</a></td>
-                </tr>
-                {% endfor %}
-                {% for group in group_added%}
-                
+        <div id="title">Welcome! {{user.username}}</div>
+    <div id="drag"><button id="instructionBtn">Can't see full table?</button></div>
+        <div class="errors">
+            {%if messages%}
+            <ul>
+                {%for message in messages%}
+                <li style="margin: 10px; padding:10px">{{message}}</li>
+                {%endfor%}
+            </ul>
+            {%endif%}
+        </div>
+        <div  id="skip-big" class="new-menu">
+            <label for="toggle">
+                <i class="fas fa-bars hamburger"></i>
+            </label>
+            <input type="checkbox" id="toggle" name="toggle">
+                <nav class="navigation--responsive">
+                    <ul>
+                        <li>
+                            <a href="/new" class="pure-menu-link">Create group</a>
+                        </li>
+                        <li>
+                            <a href="/myGroups" class="pure-menu-link">View my groups</a>
+                        </li>
+                        <li>
+                            <a href="/allGroups" class="pure-menu-link">View other groups</a>
+                        </li>
+                        <li>
+                            <a href="/logout" class="pure-menu-link">Log Out</a>
+                        </li> 
+                    </ul>
+                </nav>
+        </div>
+        <div  id="skip-mobile" class="pure-menu pure-menu-horizontal" id="main_table">
+            <div id="navBar">
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item">
+                        <a href="/new" class="pure-menu-link">Create group</a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a href="/myGroups" class="pure-menu-link">View my groups</a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a href="/allGroups" class="pure-menu-link">View other groups</a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a href="/logout" class="pure-menu-link" id="log-out">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="main-table">
+            <table class=" pure-table pure-table-striped" id="tableData">
+                <thead>
                     <tr>
-                        <td><a href="/group_chat/{{group.id}}">{{group.name}}</td>
+                        <th>Group Name</th>
+                        <th>Host</th>
+                        <th>Members</th>
+                        <th>Meets</th>                        
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for group in group_added%}
+                    
+                        <tr>
+                            <td id="group-name"><a href="/group_chat/{{group.id}}">{{group.name}} </td>
+                            <td><a href="/users_groups/{{group.owner.id}}">{{group.owner.username}}</a></td>
+                            <td>{{group.joined.all.count}}</td>
+                            <td>{{group.day}} @ {{group.time}}</td>
+                            <td ><a href="/drop/{{group.id}}">Drop</a></td>
+                        </tr>
+                    {% endfor %}
+                    {% for group in this_group %}
+                    <tr>
+                        <td><a href="/group_chat/{{group.id}}">{{group.name}}</a></td>
                         <td>{{group.owner.username}}</td>
                         <td>{{group.joined.all.count}}</td>
-                        <td>{{group.rules}}</td>
                         <td>{{group.day}} @ {{group.time}}</td>
-                        <td><a href="/drop/{{group.id}}">Leave Group</a></td>
+                        <td><a href="edit/{{group.id}}">Edit</a></td>
                     </tr>
-                {% endfor %}
-            </tbody>
-    </table>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
+<script defer src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script>
 </html>

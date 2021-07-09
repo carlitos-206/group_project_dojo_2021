@@ -1,0 +1,345 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  margin: 0 auto;
+  background-color: pink;
+  position: relative;
+}
+
+label[for="toggle"] {
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  color: black;
+  z-index: 6;
+  font-size: 3rem;
+}
+
+.navigation--responsive {
+  display: none;
+}
+
+#toggle {
+  display: none;
+}
+
+svg.hamburger {
+  display: none;
+}
+@media only screen and (max-width:480px) {
+  #wrapper{
+      z-index: -1;
+      background-color: rgb(66, 57, 57);
+  }
+  .skip-mobile{
+      display: none;
+  }
+  .main-navigation {
+      display: none;
+  }
+
+  svg.hamburger {
+      display: block;
+  }
+
+  .navigation--responsive {
+      display: block;
+      background: linear-gradient(to top,  #000000, #9f9f9f);
+      width: 200px;
+      height: 100vh;
+      position: fixed;
+      top: -100vh;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      margin: 0;
+      padding: 0;
+      transition: top 1s;
+  }
+  .navigation--responsive ul {
+      display: block;
+      list-style: none;
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-around;
+      margin: 85px 0 0 0;
+      padding: 0;
+  }
+  .navigation--responsive ul li {
+      margin: 0;
+      padding: 0;
+  }
+  .navigation--responsive li a {
+      padding: 50px 20px 50px 30px;
+      text-decoration:none;
+      color:black;
+      font-family:sans-serif;
+  }  
+  #toggle:checked ~ .navigation--responsive {
+      top: 0vh;
+      z-index: +1;
+  }
+h1, h2, h3, h4, h5{
+    text-shadow: 2px 2px 5px blue;
+    font-family: "Lucida Console", "Courier New", monospace;
+  }
+
+h5 {
+  text-align: center;
+}
+
+a {
+  color:orchid;
+}
+
+button {
+    background-color:lightslategrey;
+    color: blue;
+  }
+
+p {
+    color:black;
+}
+
+body {
+    background-color:lightblue;
+  }
+
+  table, th, td {
+    border: 1px solid olive;
+  }
+
+th {
+  color:black;
+  height: 35px;
+  }
+#main-title{
+  position: relative;
+  top: 100px;
+  left: 5%;
+}
+#main-table{
+  position: relative;
+  width: max-content;
+  top: 100px;
+  left: 5%;
+}
+
+/* this is a button to use later in production in case the screens begin to get inresponsive */
+#drag{
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 160px;
+  width: fit-content;
+  z-index: +1;
+}
+#instructionBtn{
+
+  border-radius: 5%;
+  width: 190px;
+  height: 30px;
+}
+/* ------------------End of botton------------------ */
+}
+
+@media only screen and (min-width:481px) {
+  #wrapper{
+    z-index: -1;
+    background-color: rgb(66, 57, 57);
+}
+.skip-mobile{
+    display: none;
+}
+.add-mobile{
+  display:block;
+  padding-top: 5px;
+}
+.main-navigation {
+    display: none;
+}
+
+svg.hamburger {
+    display: block;
+}
+
+.navigation--responsive {
+    display: block;
+    background: linear-gradient(to top,  #000000, #9f9f9f);
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: -100vh;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    transition: top 1s;
+}
+.navigation--responsive ul {
+    display: block;
+    list-style: none;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin: 85px 0 0 0;
+    padding: 0;
+}
+.navigation--responsive ul li {
+    margin: 0;
+    padding: 0;
+}
+.navigation--responsive li a {
+    padding: 50px 20px 50px 30px;
+    text-decoration:none;
+    color:black;
+    font-family:sans-serif;
+}  
+#toggle:checked ~ .navigation--responsive {
+    top: 0vh;
+    z-index: +1;
+}
+h1, h2, h3, h4, h5{
+  text-shadow: 2px 2px 5px blue;
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+h5 {
+text-align: center;
+}
+
+a {
+color:orchid;
+}
+
+button {
+  background-color:lightslategrey;
+  color: blue;
+}
+
+p {
+  color:black;
+}
+
+body {
+  background-color:lightblue;
+}
+
+table, th, td {
+  border: 1px solid olive;
+}
+
+th {
+color:black;
+height: 35px;
+}
+#main-title{
+position: relative;
+top: 100px;
+left: 5%;
+}
+#main-table{
+position: relative;
+width: max-content;
+top: 100px;
+left: 5%;
+}
+
+/* this is a button to use later in production in case the screens begin to get inresponsive */
+#drag{
+  display: block;
+  position: relative;
+  left: 25%;
+  top: 160px;
+  width: fit-content;
+  z-index: +1;
+}
+#instructionBtn{
+    border-radius: 5%;
+    width: 190px;
+    height: 30px;
+}
+/* ---------------------------END-------------------------------------------- */
+}
+@media only screen and (min-width:1024px){
+  #wrapper{
+      z-index: -1;
+      background-color: rgb(66, 57, 57);
+  }
+  #skip-big{
+    display: none;
+  }
+  #skip-menu{
+    font-size: 32px;
+    position: relative;
+    left: 10%;
+  }
+  .skip-mobile{
+    display: block;
+  }
+h1, h2, h3, h4, h5{
+    text-shadow: 2px 2px 5px blue;
+    font-family: "Lucida Console", "Courier New", monospace;
+  }
+
+h5 {
+  text-align: center;
+}
+
+a {
+  color:orchid;
+}
+
+button {
+    background-color:lightslategrey;
+    color: blue;
+  }
+
+p {
+    color:black;
+}
+
+body {
+    width: fit-content;
+    background-color:lightblue;
+  }
+
+  table, th, td {
+    border: 1px solid olive;
+    padding: 5px;
+  }
+
+
+th {
+    color:black;
+
+}
+#main-title{
+  font-size: 28px;
+  position: relative;
+  top: 100px;
+  left: 5%;
+}
+#main-table{
+  font-size: 24px;
+  position: relative;
+  top: 100px;
+  left: 5%;
+  width: 155%;
+}
+#drag{
+ display: none;
+}
+#instructionBtn{
+    border-radius: 5%;
+    width: 190px;
+    height: 30px;
+}
+}

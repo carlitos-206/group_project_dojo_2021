@@ -3,47 +3,45 @@
     margin: 0px;
 }
 body {
-    max-width: 1920px;
     margin: 0 auto;
-    position: relative;
-}
 
-label[for="toggle"] {
+    position: relative;
+  }
+  
+  label[for="toggle"] {
     position: fixed;
     top: 25px;
     left: 25px;
     color: black;
     z-index: 6;
     font-size: 3rem;
-}
-
-.navigation--responsive {
+  }
+  
+  .navigation--responsive {
     display: none;
-}
-
-#toggle {
+  }
+  
+  #toggle {
     display: none;
-}
-
-svg.hamburger {
+  }
+  
+  svg.hamburger {
     display: none;
-}
-@media only screen and (max-width:480px) {
-
+  }
+@media only screen and (max-width:480px){
+    
+    #skip-menu{
+        display: none;
+    }
     #skip-mobile{
         display: none;
     }
     #skip-big{
         display: block;
     }
-    .main-navigation {
-        display: none;
-    }
-
     svg.hamburger {
         display: block;
     }
-
     .navigation--responsive {
         display: block;
         background: linear-gradient(to top,  #000000, #9f9f9f);
@@ -83,63 +81,50 @@ svg.hamburger {
         top: 0vh;
         z-index: +1;
     }
-    #title {
-        font-size: x-large;
-        font-weight: bolder;
-        position: relative;
-        left: 25%;
-        top: 35px;
-        width: fit-content;
-    }
-    #errors{
-        position: relative;
-        background-color: #000000;
+    #main-title{
         display: block;
-        color: red;
-    }
-    #tableData{
-        display: block;
-        z-index: +1;
+        position: relative;
+        bottom: 100px;
+        left: 30%;
     }
     #main-table{
-        padding: 5px;
+        display: block;
         position: relative;
-        top: 50px;
-        display: block;
-        width: fit-content;
+        width: 95%;
+        top: 100px;
+        left: 1%;
     }
-    #group-name{
-        width: 150px;
-    }
+
+    /* this is a button to use later in production in case the screens begin to get inresponsive */
     #drag{
-        display: block;
         position: relative;
         left: 45%;
-        top: 50px;
-        width: fit-content;
-        z-index: +1;
+        top: 135px;
+        z-index: +6;
     }
     #instructionBtn{
         border-radius: 5%;
         width: 190px;
         height: 30px;
     }
-} 
+/* -----------------------------END----------------------------------------------------- */
+}
 @media only screen and (min-width:481px){
+    #wrapper{
+        width: fit-content;
+    }
+    #skip-menu{
+        display: none;
+    }
     #skip-mobile{
         display: none;
     }
     #skip-big{
         display: block;
     }
-    .main-navigation {
-        display: none;
-    }
-
     svg.hamburger {
         display: block;
     }
-
     .navigation--responsive {
         display: block;
         background: linear-gradient(to top,  #000000, #9f9f9f);
@@ -179,97 +164,50 @@ svg.hamburger {
         top: 0vh;
         z-index: +1;
     }
-    #title {
-        font-size: x-large;
-        font-weight: bolder;
+    #main-title{
+        display: block;
         position: relative;
+        bottom:75px;
         left: 25%;
-        top: 35px;
-        width: fit-content;
-    }
-    #errors{
-        position: relative;
-        background-color: #000000;
-        display: block;
-        color: red;
-    }
-    #tableData{
-        display: block;
-        z-index: +1;
     }
     #main-table{
-        padding: 5px;
+        display: block;
         position: relative;
-        top: 50px;
-        display: block;
-        width: fit-content;
+        width: 95%;
+        top: 100px;
+        left: 1%;
     }
-    #group-name{
-        width: 150px;
-    }
+/* this is a button to use later in production in case the screens begin to get inresponsive */
     #drag{
-        display: block;
+        display: none;
         position: relative;
         left: 30%;
-        top: 50px;
+        top: 35px;
         width: fit-content;
-        z-index: +1;
+        z-index: +6;
     }
     #instructionBtn{
         border-radius: 5%;
         width: 190px;
         height: 30px;
     }
+/* --------------------END------------------------------------------------ */
 }
 @media only screen and (min-width:1024px){
     #skip-big{
         display: none;
     }
-    #skip-mobile{
+    #skip-menu{
         display: block;
         position: relative;
-        left: 17%;
+        left: 25%;
     }
-    #title {
-        font-size: x-large;
-        font-weight: bolder;
+    #main-title{
         position: relative;
-        left: 27%;
-        top: 65px;
-        width: fit-content;
-    }
-    #errors{
-        position: relative;
-        background-color: #000000;
-        display: block;
-        color: red;
-    }
-    #tableData{
-        display: block;
-        z-index: +1;
+        left: 30%;
     }
     #main-table{
         position: relative;
-        top: 50px;
-        left: 10%;
-        display: block;
-        width: fit-content;
-    }
-    #group-name{
-        width: 150px;
-    }
-    #drag{
-        display: none;
+        left: 15%;
     }
 }
-/* @media only screen and (max-width:480px){
-
-} 
-
-@media only screen and (min-width:481px){
-
-}
-@media only screen and (min-width:1024px){
-
-}
-*/
